@@ -23,7 +23,7 @@ function findLinks() {
 	  $.ajax({
 
 		        type : 'POST',
-		          url : 'http://localhost:8080/papone/ApplicationService',	
+		          url : 'http://localhost:8080/papone/PrDetailService',	
 		          contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
 		          dataType: "json",
 		          data: {
@@ -31,71 +31,54 @@ function findLinks() {
 		              
 		          },
 		          success : function(response) {
-		        	  alert(response);
-		        	  drawGraph();
+		        	  
+		        	  drawGraphPrDetail(response);
 		        	  
 		        	  
 		        }
 		   });
-	  
+	  $.ajax({
+
+	        type : 'POST',
+	          url : 'http://localhost:8080/papone/PrService',	
+	          contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+	          dataType: "json",
+	          data: {
+	              ci: ci
+	              
+	          },
+	          success : function(response) {
+	        	  
+	        	  drawGraphPr(response);
+	        	  
+	        	  
+	        }
+	   });
+	  $.ajax({
+
+	        type : 'POST',
+	          url : 'http://localhost:8080/papone/ApplicationService',	
+	          contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
+	          dataType: "json",
+	          data: {
+	              ci: ci
+	              
+	          },
+	          success : function(response) {
+	        	  
+	        	  drawGraphSeverity(response);
+	        	  
+	        	  
+	        }
+	   });
 	 
 
-	function drawGraph(){
-		$(function () {
-            $('#pr-graph-container').highcharts({
-                title: {
-                    text: 'Monthly snapshot',
-                    x: -20 //center
-                },
-                subtitle: {
-                    text: 'Click-and-drag chart area to zoom in, click \'Reset zoom\' button to reset'
-                },
-                chart: {
-                    zoomType: 'x'
-                },
-                xAxis: {
-                    categories: ['Pavan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                },
-                yAxis: {
-                    title: {
-                        text: 'Number of PRs'
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                },
-                tooltip: {
-                    valueSuffix: 'tickets'
-                },
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle',
-                    borderWidth: 0
-                },
-                series: [{
-                    name: 'Open PRs',
-                    color: '#FF9800',
-                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-                }, {
-                    name: 'Closed PRs',
-                    color: '#4CAF50',
-                    data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-                }]
-            });
-        });
+	function drawGraph(response){
+		
 	}
 	
 	  
 	  
-	 
-	 
-	  function setData(result){
-		 
-		
 
 	  function showModalData(arr,result){
 		  
@@ -159,5 +142,5 @@ function findLinks() {
 		  }
 	  
 	
-	  }
+	  
 });
