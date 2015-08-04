@@ -68,7 +68,12 @@ public class SQL {
 	public static String PR_90DAYS_DETAIl ="SELECT id, title, status, ci , open_date, phase,smgroup FROM problem_master WHERE STR_TO_DATE(open_date,'%Y-%m-%d') BETWEEN DATE_FORMAT(NOW()-INTERVAL 3 MONTH, '%Y-%m-%d 00:00:00') AND NOW()- INTERVAL 1 MONTH AND ci like ? and status not like '%Closed%'";
 	public static String PR_1800DAYS_DETAIL ="SELECT id, title, status, ci , open_date, phase,smgroup FROM problem_master WHERE STR_TO_DATE(open_date,'%Y-%m-%d') BETWEEN DATE_FORMAT(NOW()-INTERVAL 6 MONTH, '%Y-%m-%d 00:00:00') AND NOW()- INTERVAL 3 MONTH AND ci like ? and status not like '%Closed%'";
 	public static String PR_OVER180_DETAIL ="SELECT id, title, status, ci , open_date, phase,smgroup FROM problem_master WHERE STR_TO_DATE(open_date,'%Y-%m-%d') < DATE_FORMAT(NOW() -INTERVAL 6 MONTH, '%Y-%m-%d') and ci like ? and status not like '%Closed%";
-	
+	public static String PR_PHASE_COUNT ="SELECT count(*), phase FROM `problem_master` where ci like ? and status not like '%Closed%' group by phase";
+	public static String PR_PHASE_IDENTIFY ="SELECT id, title, status, ci , open_date, phase,smgroup FROM problem_master WHERE phase like '%Identify and Classify %' and ci like ? and status not like '%Closed%'";
+	public static String PR_PHASE_INVESTIGATE ="SELECT id, title, status, ci , open_date, phase,smgroup FROM problem_master WHERE phase like '%Investigate and Diagnose Problems%' and ci like ? and status not like '%Closed%'";
+	public static String PR_PHASE_KNOWNERR ="SELECT id, title, status, ci , open_date, phase,smgroup FROM problem_master WHERE phase like '%N.Known Error Investigation%' and ci like ? and status not like '%Closed%'";
+	public static String PR_PHASE_KNOWNERR_APPROVAL ="SELECT id, title, status, ci , open_date, phase,smgroup FROM problem_master WHERE phase like '%N.Known Error Solution Approval%' and ci like ? and status not like '%Closed%'";
+	public static String PR_PHASE_RCAPPROVAL ="SELECT id, title, status, ci , open_date, phase,smgroup FROM problem_master WHERE phase like '%N.Root Cause Approval%' and ci like ? and status not like '%Closed%'";
 	
 }
 
