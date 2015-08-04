@@ -23,8 +23,8 @@ body {
   width: 100px;
   height: 100px;
   position: absolute;
-  bottom:30px;
-  right:30px;  
+  bottom:5%;
+  right:5%;  
   box-sizing: border-box;
   border: solid 0.5em transparent;
   border-color: #3a9bdc #ff6060 #ffc500 #63f47a;
