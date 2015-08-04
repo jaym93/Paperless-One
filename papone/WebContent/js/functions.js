@@ -21,9 +21,10 @@
     });
 })();
 
-$(window).load(function () {
+$(window).ajaxStop(function () {
     $(".loader").fadeOut("slow");
 });
+setTimeout(function(){ $(".loader").fadeOut("slow"); }, 3000);
 
 $(document).ready(function () {
 	
