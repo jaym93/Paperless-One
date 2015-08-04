@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Status :: Application</title>
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Vendor CSS -->
+    <link href="vendors/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="vendors/animate-css/animate.min.css" rel="stylesheet">
+    <link href="vendors/sweet-alert/sweetalert2.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="css/app.min.css" rel="stylesheet">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    
+
+</head>
+<body onload="getTemplate(); ">
+<div class="loader"></div>
+    <header id="header" onmouseover="$('#applications_link').addClass('active');"></header>
+    <section id="main"></section>
+    <section id="content">
+        <div class="container">
+            <div class="block-header">
+                <h2 id="app_status">Application status <i class="md md-chevron-right"></i>
+                </h2>
+            </div>
+
+            <div class="col-sm-8">
+
+                <!--Top issues-->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Today's top issues <small>Incidents that require attention</small></h2>
+                    </div>
+
+                    <div class="card-body m-t-0">
+                        <table class="table table-inner table-vmiddle table-bordered table-hover find-tickets table-responsive">
+                            <thead style="background:#aaa">
+                                <tr>
+                                    <th>IM number</th>
+                                    <th>Title</th>
+                                    <th>Reason</th>
+                                    <th>Assignee</th>
+                                </tr>
+                            </thead>
+                            <tbody id="top-issues">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--Statistics-->
+                <div class="card" style="height:600px;">
+                    <div class="card-header">
+                        <h2>Ticket statistics <small>Number of incidents and FRs</small></h2>
+                    </div>
+                    <div class="card-body m-t-0">
+
+                        <div>
+                            <div id="incident-chart" style="width:50%;height:500px;display:inline;float:left"></div>
+                            <div id="fulfillment-chart" style="width:50%;height:500px;display:inline;float:right"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                            <div class="card-header">
+                                <h2>Problem categorization by severity<small>Critical to low</small></h2>
+                                <button class="btn btn-float waves-effect bgm-blue" onclick="window.location.href ='probdetails.html';" data-toggle="tooltip" data-placement="bottom" data-original-title="Detailed view"><i class="md md-trending-up"></i></button>
+                            </div>
+                            <div class="card-body m-t-0">
+
+                               
+                                <div>
+                                    <div id="pr-priority"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                <!--CR Calendar-->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>CR Calendar <small>Change Records planned</small></h2>
+                        <div style="float:right;font-size:50px;">
+                            <script type="text/javascript">
+                                function showNFZ() {
+                                    swal({ title: 'No Fly Zones', html: '<div class="table-responsive"><table class="table table-hover table-bordered"><thead style="background-color:#aaa"><tr><th style="background-color:#eee">Start Date</th><th style="background-color:#eee">End Date</th></tr></thead><tbody style="font-weight:500;"><tr><td>1st May</td><td>30th June</td></tr><tr><td>1st October</td><td>9th October</td></tr><tr><td>1st November</td><td>6th November</td></tr><tr><td>1st December</td><td>8th December</td></tr><tr><td>3rd January</td><td>6th January</td></tr><tr><td>1st February</td><td>7th February</td></tr><tr><td>5th April</td><td>6th April</td></tr></tbody></table></div>' });
+                                }
+                                function showLegend() {
+                                    swal({ title: 'Legend to CR Calendar', html: '<span style="background-color:green;color:white;padding:5px;margin:20px;border-radius:5px;"> Normal change</span>Change review / approval period: <b>10 days</b>' + '<br /><br />' + '<span style="background-color:blue;color:white;padding:5px;margin:20px;border-radius:5px;">Expedited change</span> Change review / approval period: <b>2-3 days</b>' + '<br /><br />' + '<span style="background-color:red;color:white;padding:5px;margin:20px;border-radius:5px;">Emergency change</span> Change review / approval period: <b>Immediate</b>' + '<hr />' });
+                                }
+                            </script>
+                            <button class="btn bgm-cyan btn-float" style="position: relative; bottom: 0px;" data-toggle="tooltip" data-placement="bottom" data-original-title="No Fly Zones" onclick="showNFZ()"><i class="md md-layers-clear"></i></button>
+                            <button class="btn bgm-bluegray btn-float" style="position: relative; bottom: 0px;" data-toggle="tooltip" data-placement="bottom" data-original-title="Legend" onclick="showLegend()"><i class="md md-help"></i></button>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="card-body">
+                        <div id="calendar-widget-new"></div>
+                    </div>
+                </div>
+
+                <div class="card" style="height:300px;">
+                    <div class="card-header">
+                        <h2>Quality day statistics<small>QD percentage this month</small></h2>
+                    </div>
+                    <div class="card-body">
+                        <script type="text/javascript">
+                            $(function () {
+                                var gaugeOptions = {
+                                    plotOptions: {
+                                        series: {
+                                            slicedOffset: 0,
+                                        },
+                                        solidgauge: {
+                                            dataLabels: {
+                                                y: -40,
+                                                borderWidth: 0,
+                                                useHTML: true
+                                            }
+                                        }
+                                    }
+                                };
+
+
+
+                                // The QD gauge
+                                $('#container-qd').highcharts(Highcharts.merge(gaugeOptions, {
+                                    chart: {
+                                        type: 'solidgauge'
+                                    },
+                                    title: "QD Percentage",
+                                    exporting: false,
+                                    pane: {
+                                        center: ['50%', '85%'],
+                                        size: '150%',
+                                        startAngle: -90,
+                                        endAngle: 90,
+                                        background: {
+                                            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                                            innerRadius: '60%',
+                                            outerRadius: '100%',
+                                            shape: 'arc'
+                                        }
+                                    },
+
+                                    tooltip: {
+                                        enabled: false,
+                                        valueSuffix: '% QD'
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        max: 100,
+                                        title: {
+                                            text: 'QD'
+                                        },
+                                        stops: [
+                                            [0.1, '#DF7353'], // red
+                                            [0.5, '#DDDF0D'], // yellow
+                                            [0.9, '#55CF3B'] // green
+                                        ],
+                                        lineWidth: 0,
+                                        minorTickInterval: 5,
+                                        tickPixelInterval: 500,
+                                        tickWidth: 1,
+                                        title: {
+                                            y: -70
+                                        },
+                                        labels: {
+                                            y: 16
+                                        }
+                                    },
+
+                                    series: [{
+                                        name: 'QD',
+                                        data: [83],
+                                        dataLabels: {
+                                            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                                                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                                                   '<span style="font-size:12px;color:silver">% QD</span></div>'
+                                        },
+                                        cursor: 'pointer',
+                                        point: {
+                                            events: {
+                                                click: function () {
+                                                    //alert("This will open detailed QD status monthly/weekly");
+                                                }
+                                            }
+                                        }
+                                    }]
+
+                                }));
+                            });
+                        </script>
+                        <div align="center">
+
+                            <div id="container-qd" class="col-sm-12" style="height:200px;"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div class="col-sm-4">
+                <!-- About app-->
+                <div class="card blog-post">
+                    <div class="bp-header">
+                    <div align="center" style="padding:20px">
+                        <img src="" alt="app_icon" style="resize:both; width:150px;" id="app_icon">
+					</div>
+                        <a href="#" class="bp-title" style="font-family:Georgia">
+                            <h2 id="about">About
+                            </h2>
+                        </a>
+                    </div>
+
+                    <div id="app_desc" class="p-20">
+
+                    </div>
+                </div>
+
+                <!-- SPOC contact -->
+                <div class="card profile-view">
+                    <div class="pv-header">
+                        <h3>SPOC: <span id="spoc_name"></span></h3>
+                    </div>
+
+                    <div class="pv-body">
+
+
+                        <ul class="pv-contact" style="text-align:left;">
+                            <li><i id="spoc_location" class="md md-room"></i> &nbsp; </li>
+                            <li><i id="spoc_email" class="md md-email"></i> &nbsp;</li>
+                            <li><i id="app_pdl" class="md md-people"></i> &nbsp; </li>
+                        </ul>
+
+                        <a id="mail-to"class="pv-follow-btn bgm-yellow c-black waves-effect">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <div class="modal fade" data-modal-color="bluegray" id="app-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title"><font color="white">Details</font></h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+
+
+                   <table class="table table-inner table-vmiddle table-bordered table-hover">
+                   <thead style="background:#aaa" class="table-responsive">
+                                <tr>
+                                    <th class="f-500 c-brown">IM number</th>
+                                    <th class="f-500 c-brown">Title</th>
+                                    <th class="f-500 c-brown">AppName</th>
+                                    <th class="f-500 c-brown">Specialist</th>
+                                    <th class="f-500 c-brown">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tickets-modal" class="table-responsive find-tickets">
+
+                            </tbody>
+                   </table>
+                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span style="float:left;font-size:16px;">&copy; Hewlett Packard Enterprise, 2015</span>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" data-modal-color="bluegray" id="fr-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title"><font color="white">Details</font></h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                   
+
+                   <table class="table table-inner table-vmiddle table-bordered table-hover ">
+                   <thead style="background:#aaa" class="table-responsive">
+                                <tr>
+                                    <th class="f-500 c-brown">FR number</th>
+                                    <th class="f-500 c-brown">Title</th>
+                                    <th class="f-500 c-brown">Status</th>
+                                    <th class="f-500 c-brown">Specialist</th>
+                                    <th class="f-500 c-brown">Request Date</th>
+                                    <th class="f-500 c-brown">Target Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tickets-modal-fr" class="table-responsive">
+                               
+                            </tbody>
+                   </table>
+                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span style="float:left;font-size:16px;">&copy; Hewlett Packard Enterprise, 2015</span>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    <footer id="footer" class="card-body"></footer>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+    <!-- Javascript Libraries -->
+    <script src="js/functions.js"></script>
+	<script src="js/appPage.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="vendors/fullcalendar/lib/moment.min.js"></script>
+    <script src="vendors/fullcalendar/fullcalendar.min.js"></script>
+    <script src="vendors/auto-size/jquery.autosize.min.js"></script>
+    <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="vendors/waves/waves.min.js"></script>
+    <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
+
+    <script src="vendors/highcharts/highcharts.js"></script>
+    <script src="vendors/highcharts/touch-tooltip-fix.js"></script>
+    <script src="vendors/highcharts/highcharts-more.js"></script>
+    <script src="vendors/highcharts/solid-gauge.src.js"></script>
+</body>
+
+</html>

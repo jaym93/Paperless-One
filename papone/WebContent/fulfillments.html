@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reports :: Fulfillments</title>
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Vendor CSS -->
+    <link href="vendors/datatable/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="vendors/datatable/TableTools/css/dataTables.tableTools.css" rel="stylesheet" />
+    <link href="vendors/datatable/ColReorder/css/dataTables.colReorder.css" rel="stylesheet" />
+    <link href="vendors/datatable/ColVis/css/dataTables.colVis.css" rel="stylesheet" />
+    <link href="vendors/animate-css/animate.min.css" rel="stylesheet">
+    <link href="vendors/sweet-alert/sweetalert2.css" rel="stylesheet" />
+    <!-- CSS -->
+    <link href="css/app.min.css" rel="stylesheet">
+
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/fulfillmentPage.js"></script>
+
+
+</head>
+<body onload="getTemplate();">
+<div class="loader"></div>
+    <header id="header" onmouseover="$('#incidents_link').addClass('active');"></header>
+    <section id="main"></section>
+
+    <section id="content">
+        <div class="container">
+            <div class="block-header">
+                <h2>Fulfillment requests</h2>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Currently open FRs <small>Drag columns to re-order, click headers to sort in ascending or descending order, green buttons to export, and blue button to show/hide columns. Search any column using the search box. You may also select the number of items to show per page in the dropdown.</small></h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th data-column-id="id">FR number</th>
+                                    <th data-column-id="title">Title</th>
+                                    <th data-column-id="app_name">AppName</th>
+                                    <th data-column-id="assignee">Assignee</th>
+                                    <th data-column-id="reportedDate">Open Date</th>
+                                    <th data-column-id="targetDate">SLA Date</th>
+                                    <th data-column-id="status">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fr-body" class="find-tickets">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>FR trends<small>Number of open FRs in a month and number of tickets closed in the month</small></h2>
+                </div>
+                <div class="card-body">
+                   
+                    <div id="pr-graph-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="card-body"></footer>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+    <!-- Javascript Libraries -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="vendors/waves/waves.min.js"></script>
+    <script src="vendors/datatable/jquery.dataTables.min.js"></script>
+    <script src="vendors/datatable/TableTools/js/dataTables.tableTools.js"></script>
+    <script src="vendors/datatable/ColReorder/js/dataTables.colReorder.js"></script>
+    <script src="vendors/datatable/ColVis/js/dataTables.colVis.js"></script>
+    <script src="vendors/highcharts/highcharts.js"></script>    
+    <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+    <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
+    <script src="vendors/bootstrap-select/bootstrap-select.min.js"></script>    
+    
+
+
+    <!-- Data Table -->
+
+</body>
+
+</html>

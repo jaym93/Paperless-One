@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paperless One</title>
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Vendor CSS -->
+    <link href="vendors/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="vendors/animate-css/animate.min.css" rel="stylesheet">
+    <link href="vendors/sweet-alert/sweetalert2.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="css/app.min.css" rel="stylesheet">
+    <!--jQuery-->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/template.js"></script>
+    <script src="js/dashboardPage.js"></script>
+
+
+</head>
+<body style="overflow-x:hidden;" onload="getTemplate(); ">
+    <div class="loader"></div>
+    <header id="header" onmouseover="$('#index_link').addClass('active');"></header>
+    <section id="main"></section>
+    <section id="content">
+        <div class="container">
+            <div class="block-header">
+            </div>
+
+            <div class="mini-charts">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3">
+
+                        <div class="mini-charts-item bgm-cyan" onclick='window.location.href="incidents.html";'>
+
+                            <div class="clearfix">
+                                <div class="chart stats-bar"></div>
+
+                                <div class="count">
+                                    <small>Incidents open today</small>
+                                    <h2 id="incidents-today"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mini-charts-item bgm-lightgreen" onclick='window.location.href="fulfillments.html";'>
+                            <div class="clearfix">
+                                <div class="chart stats-bar-2"></div>
+                                <div class="count">
+                                    <small>FRs open today</small>
+                                    <h2 id="fulfillments-today"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mini-charts-item bgm-orange" onclick='window.location.href="problems.html";'>
+                            <div class="clearfix">
+                                <div class="chart stats-line"></div>
+                                <div class="count">
+                                    <small>Problems this month</small>
+                                    <h2 id="problems-month"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-md-3">
+                        <div class="mini-charts-item bgm-lime" onclick='window.location.href="changes.html";'>
+                            <div class="clearfix">
+                                <div class="chart stats-line-2"></div>
+                                <div class="count">
+                                    <small>Changes this month</small>
+                                    <h2 id="changes-month"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="dash-widgets">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="dash-widget-item bgm-bluegray">
+                            <div class="dash-widget-item bgm-bluegray">
+                                <div id="weather-widget">
+                                    <div class="weather-status" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'Paperless Instore');">App Status</div>
+                                    <div class="dash-widget-footer">
+                                        <div class="weather-list tomorrow" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'Audit');">
+                                            <span><i id="audit" style="position:relative;bottom:12px;left:10px;font-size:20px;padding-right:15px;"></i></span>
+                                            <span>Audit</span>
+                                        </div>
+                                        <div class="weather-list tomorrow" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'Binder');">
+                                            <span><i id="binder" style="position: relative; bottom: 12px; left: 10px; font-size: 20px; padding-right: 15px;"></i></span>
+                                            <span>Binder</span>
+                                        </div>
+                                        <div class="weather-list tomorrow" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'Dashboard');">
+                                            <span><i id="dashboard" style="position: relative; bottom: 12px; left: 10px; font-size: 20px; padding-right: 15px;"></i></span>
+                                            <span>Dashboard</span>
+                                        </div>
+                                        <div class="weather-list tomorrow" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'Know');">
+                                            <span><i id="know" style="position: relative; bottom: 12px; left: 10px; font-size: 20px; padding-right: 15px;"></i></span>
+                                            <span>Know</span>
+                                        </div>
+                                        <div class="weather-list tomorrow" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'MyCoach');">
+                                            <span><i id="myc" style="position: relative; bottom: 12px; left: 10px; font-size: 20px; padding-right: 15px;"></i></span>
+                                            <span>MyCoach</span>
+                                        </div>
+                                        <div class="weather-list tomorrow" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'Order');">
+                                            <span><i id="order" style="position: relative; bottom: 12px; left: 10px; font-size: 20px; padding-right: 15px;"></i></span>
+                                            <span>Order</span>
+                                        </div>
+                                        <div class="weather-list tomorrow" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'SEApps');">
+                                            <span><i id="sea" style="position: relative; bottom: 12px; left: 10px; font-size: 20px; padding-right: 15px;"></i></span>
+                                            <span>SEApps</span>
+                                        </div>
+                                        <div class="weather-list tomorrow" onclick="window.location = 'applications.html'; localStorage.setItem('application', 'Visit NG');">
+                                            <span><i id="visit" style="position: relative; bottom: 12px; left: 10px; font-size: 20px; padding-right: 15px;"></i></span>
+                                            <span>Visit NG</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div id="site-visits" class="dash-widget-item bgm-teal">
+                            <div class="dash-widget-header">
+                                <div class="p-20">
+                                    <div class="dash-widget-visits"></div>
+                                </div>
+                                <div class="dash-widget-title">Statistics this month</div>
+                            </div>
+
+                            <div class="p-20">
+
+                                <small>Incidents</small>
+                                <h3 id="incidents-month" class="m-0 f-400"></h3>
+                                <br />
+                                <small>Fulfillment Requests</small>
+                                <h3 id="fulfillments-month" class="m-0 f-400"></h3>
+                                <br />
+                                <small>Total </small>
+                                <h3 id="total" class="m-0 f-400"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Today's top issues <small>Incidents that require attention</small></h2>
+                    </div>
+
+                    <div class="card-body m-t-0">
+                        <table class="table table-inner table-vmiddle table-bordered table-hover find-tickets">
+                            <thead style="background:#aaa">
+                                <tr>
+                                    <th>IM number</th>
+                                    <th> Application</th>
+                                    <th>Title</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topIssues"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div id="calendar-widget-new"></div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <footer id="footer" class="card-body"></footer>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+    <!-- Javascript Libraries -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="vendors/flot/jquery.flot.min.js"></script>
+    <script src="vendors/flot/jquery.flot.resize.min.js"></script>
+    <script src="vendors/flot/plugins/curvedLines.js"></script>
+    <script src="vendors/sparklines/jquery.sparkline.min.js"></script>
+
+    <script src="vendors/fullcalendar/lib/moment.min.js"></script>
+    <script src="vendors/fullcalendar/fullcalendar.min.js"></script>
+    <script src="vendors/auto-size/jquery.autosize.min.js"></script>
+    <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="vendors/waves/waves.min.js"></script>
+    <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
+
+    <script src="js/charts.js"></script>
+
+    <script src="vendors/highcharts/highcharts.js"></script>
+    <script src="vendors/highcharts/touch-tooltip-fix.js"></script>
+
+    <script src="js/functions.js"></script>
+
+</body>
+
+</html>

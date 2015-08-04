@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard :: Paperless One</title>
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Vendor CSS -->
+    <link href="vendors/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="vendors/animate-css/animate.min.css" rel="stylesheet">
+    <link href="vendors/sweet-alert/sweetalert2.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="css/app.min.css" rel="stylesheet">
+
+    <!--jQuery-->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        localStorage.setItem('ma-layout-status', '0');
+    </script>
+    <style>
+    @media (max-width:1000px) {
+    .status-table {
+    		display:inherit;
+    	}
+    }
+
+    </style>
+
+
+    <script src="js/exhibitPage.js"></script>
+    <script src="js/template.js"></script>
+    <script type ="text/javascript">
+    function showModal(num) {
+	    if (/IM\d\d\d\d\d\d\d\d/.test(num)) {window.open("http://smtracker.pg.com/pls/smtracker/pg_tracker.sm_details?i_id="+num,"","scrollbars=yes,resizable=yes,width=800,height=650");}
+	    else if (/FR\d\d\d\d\d\d\d\d/.test(num)) { window.open("http://smtracker.pg.com/pls/smtracker/pg_tracker.fulfillment_details?i_id=" + num, "", "scrollbars=yes,resizable=yes,width=800,height=650"); }
+	    else if (/PM\d\d\d\d\d\d\d\d/.test(num)) { window.open("http://smtracker.pg.com/pls/smtracker/pg_tracker.problem_details?i_id=" + num, "", "scrollbars=yes,resizable=yes,width=800,height=650"); }
+	    else if (/C\d\d\d\d\d\d\d\d/.test(num)) { window.open("http://smtracker.pg.com/pls/smtracker/pg_tracker.change_details?i_id=" + num, "", "scrollbars=yes,resizable=yes,width=800,height=650"); }
+	    else { alert("Unrecognized string! This may not be a valid link.") }
+	}
+    </script>
+</head>
+<body style="overflow-x:hidden;">
+ <div class="loader"></div>
+    <header id="header">
+        <ul class="header-inner" style="text-align:center">
+
+
+            <li class="logo hidden-xxs">
+                <a href="dashboard.html"><span style="font-weight:800; font-size:xx-large;">Paperless</span><sup style="font-size:x-large">  One</sup></a>
+            </li>
+
+                  </ul>
+
+
+    </header>
+ <!-- <div id='main-data' style="display:none">-->
+    <section id="main">
+
+
+
+        <section id="content">
+            <div class="container" style="width:100%">
+
+                <div class="stats">
+                    <style type="text/css">
+                        table {
+                            width: 100%;
+                        }
+
+                        td.num {
+                            width: 40%;
+                            color: white;
+                            vertical-align: middle;
+                            font-size: 36px;
+                            text-align: center;
+                            background-color: rgba(0,0,0,0.3);
+                        }
+
+                        td.desc {
+                            color: white;
+                            font-size: 200%;
+                            text-align: center;
+                            vertical-align: middle;
+                            padding: 8px;
+                            text-wrap: avoid;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+
+                        @media only screen and (max-width: 1600px) {
+   							td.desc { font-size: 100% }
+  						}
+
+                        table.table-vmiddle > thead > tr > th {
+                            background: #eeb;
+                        }
+
+                        table.status-table {
+                            text-align: center;
+                            vertical-align: middle;
+                        }
+
+                            table.status-table > tbody > tr > td > i {
+                                font-size: 50px;
+                            }
+
+                            table.status-table > thead > tr > td, table.status-table > thead > tr > th {
+                                background: #ddf;
+                            }
+
+                            table.status-table > thead > tr > td, table.status-table > thead > tr > th, table.status-table > tbody > tr > td, table.status-table > tbody > tr > th {
+                                font-size: 18px;
+                            }
+
+                        .table-hover > tbody > tr:hover {
+                            background-color: rgba(200,200,200,0.5) !important;
+                        }
+
+                        .stats > div > div {
+                            box-shadow: none;
+                        }
+
+                            .stats > div > div > div {
+                                box-shadow: 0 2px 5px rgba(0, 0, 0, .55);
+                            }
+                    </style>
+
+                    <div class="row" style="margin-bottom:20px;">
+                        <div class="col-sm-4 col-md-2 mini-card">
+                            <div class="bgm-cyan">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="num" rowspan="2" id ="row_incidents_today" style=""></td>
+                                        <td class="desc" style="">Incidents<br />open today</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-2 mini-card">
+                            <div class="bgm-pink">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="num" rowspan="2" id ="row_fulfillments_today" style=""></td>
+                                        <td class="desc" style="">Fulfilments<br />open today</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-2 mini-card">
+                            <div class="bgm-brown">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="num" rowspan="2" id ="row_incidents_month" style=""></td>
+                                        <td class="desc" style="">Incidents<br />this month</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-2 mini-card">
+                            <div class="bgm-deeppurple">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="num" rowspan="2" id ="row_fulfillments_month" style=""></td>
+                                        <td class="desc" style="">Fulfilments<br />this month</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-2 mini-card">
+                            <div class="bgm-lime">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="num" rowspan="2" id ="row_problems_month" style=""></td>
+                                        <td class="desc" style="">Problems<br />this month</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4 col-md-2 mini-card">
+                            <div class="bgm-teal">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td class="num" rowspan="2" id ="row_changes_month" style=""></td>
+                                        <td class="desc" style="">Changes<br />this month</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                        <script type="text/javascript">
+                        function showLegend() {
+                            swal({ title: 'Status explanation', html: '<div class="table-responsive"><table class="table table-hover table-bordered"><thead style="background-color:#aaa"><tr><th style="background-color:#eee;text-align:center;">Color</th><th style="background-color:#eee; text-align:center;">Reason</th></tr></thead><tbody style="font-weight:500;"><tr><td><i class="md md-radio-button-on c-lightgreen" style="font-size:50px"></i></td><td>No critical or major tickets <br>OR<br> Up to five minor tickets </td></tr><tr><td><i class="md md-radio-button-on c-amber" style="font-size:50px"></i></td><td>One or two major tickets <br>OR<br> More than five minor tickets</td></tr><tr><td><i class="md md-radio-button-on c-deeporange" style="font-size:50px"></i></td><td>One or more critical tickets <br>OR<br> More than two major tickets</td></tr></tbody></table></div>' });
+                        }
+                        </script>
+                            <div class="card-header ch-alt bgm-bluegray">
+                                <h2>Application Status <small>Scores from Paperless Instore applications</small>
+                            	<button class="btn bgm-cyan btn-float" data-toggle="tooltip" data-placement="top" data-original-title="Legend" onclick="showLegend()"><i class="md md-explore"></i></button>
+                            	</h2>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-hover status-table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Application</th>
+                                            <td>Audit</td>
+                                            <td>Binder</td>
+                                            <td>Dashboard</td>
+                                            <td>Know</td>
+                                            <td>MyCoach</td>
+                                            <td>Order</td>
+                                            <td>SEApps</td>
+                                            <td>Visit NG</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-responsive" id="im-status">
+                                        <tr>
+                                            <th>Current IM status</th>
+
+                                            <td><i id="audit" ></i></td>
+                                            <td><i id="binder" ></i></td>
+                                            <td><i id="dashboard" ></i></td>
+                                            <td><i id="know" ></i></td>
+                                            <td><i id="myc" ></i></td>
+                                            <td><i id="order" ></i></td>
+                                            <td><i id="sea"></i></td>
+                                            <td><i id="visit" ></i></td>
+                                        </tr>
+                                        </tbody>
+
+                                           <tbody class ="table-responsive">
+                                           <tr>
+                                           <th>CWTT</th>
+                                            <td><b id = "audit-cwtt"><i id="percent_audit" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            <td><b id ="binder-cwtt"><i id="percent_binder" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            <td><b id = "dashboard-cwtt"><i id="percent_dashboard" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            <td><b id = "know-cwtt"><i id="percent_know" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            <td><b id = "myc-cwtt"><i id="percent_myc" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            <td><b id = "order-cwtt"><i id="percent_order" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            <td><b id = "sea-cwtt"><i id="percent_sea" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            <td><b id = "visit-cwtt"><i id="percent_visit" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            </tr>
+                                            </tbody>
+                                        <tbody class ="table-responsive">
+                                        <tr>
+                                            <th>Quality Days</th>
+                                            <td><span id="audit_qd" style="font-size:2em;font-weight:500"></span>%</td>
+                                            <td><span id="binder_qd" style="font-size:2em;font-weight:500"></span>%</td>
+                                            <td><span id="dashboard_qd" style="font-size:2em;font-weight:500"></span>%</td>
+                                            <td><span id="know_qd" style="font-size:2em;font-weight:500"></span>%</td>
+                                            <td><span id="myc_qd" style="font-size:2em;font-weight:500"></span>%</td>
+                                            <td><span id="order_qd" style="font-size:2em;font-weight:500"></span>%</td>
+                                            <td><span id="sea_qd" style="font-size:2em;font-weight:500"></span>%</td>
+                                            <td><span id="visit_qd" style="font-size:2em;font-weight:500"></span>%</td>
+
+                                        </tr>
+                                        </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-widgets">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-6 col-sm-12">
+                            <div class="card">
+                                <div class="card-header bgm-brown">
+                                    <h2>Today's top issues <small>Incidents that require attention</small></h2>
+                                </div>
+
+                                <div class="card-body m-t-0">
+                                    <table class="table table-inner table-vmiddle table-bordered table-hover find-tickets table-responsive" id ="">
+                                        <thead style="background:#aaa">
+                                            <tr>
+                                                <th>IM number</th>
+                                                <th> Application</th>
+                                                <th>Title</th>
+                                                <th>Reason</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class ="table-responsive" id ="topIssues">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <div id="calendar-widget-new"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        </section>
+    </section>
+ <!-- </div> -->
+    <footer class="card-body">
+        <div>
+            <img src="img/HPE_Light.png" alt="Hewlett Packard Enterprise" style="float:left; resize:both; height:7em;" />
+            <img src="img/PGLogo.png" alt="Proctor & Gamble" style="float: right; resize:both; height:7em;" />
+            <br /><br /><br /><br /><br /><br />
+            <!--<h2 style="color:white; font-family:'Calisto MT'">&copy; Hewlett-Packard Development Company, 2015</h2>-->
+        </div>
+    </footer>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+    <!-- Javascript Libraries -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="vendors/flot/jquery.flot.min.js"></script>
+    <script src="vendors/flot/jquery.flot.resize.min.js"></script>
+    <script src="vendors/flot/plugins/curvedLines.js"></script>
+    <script src="vendors/sparklines/jquery.sparkline.min.js"></script>
+    <script src="vendors/easypiechart/jquery.easypiechart.min.js"></script>
+
+    <script src="vendors/fullcalendar/lib/moment.min.js"></script>
+    <script src="vendors/fullcalendar/fullcalendar.min.js"></script>
+    <script src="vendors/auto-size/jquery.autosize.min.js"></script>
+    <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="vendors/waves/waves.min.js"></script>
+    <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
+
+    <script src="js/charts.js"></script>
+	<script src="js/functions.js"></script>
+    <script src="vendors/highcharts/highcharts.js"></script>
+    <script src="vendors/highcharts/exporting.js"></script>
+
+    <script src="js/charts.js"></script>
+
+
+
+
+</body>
+
+</html>

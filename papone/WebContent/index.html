@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login :: Paperless One</title>
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+        
+    <!-- Vendor CSS -->
+    <link href="vendors/animate-css/animate.min.css" rel="stylesheet">
+            
+    <!-- CSS -->
+    <link href="css/app.min.css" rel="stylesheet">
+</head>
+    
+    <body class="login-content">
+    <div class="loader"></div>
+        <style type="text/css">
+            .pap-scaler {
+                font-size: 2000%;
+            }
+            .dash-scaler {
+                font-size:1100%;
+            }
+            @media screen and (max-width:1000px) {
+                .pap-scaler {
+                    font-size: 900%;
+                }
+                .dash-scaler {
+                    font-size:500%
+                }
+            }  
+        </style>
+        <h1 style="color:white; position:absolute;font-weight:800;" class="pap-scaler login-title">Paperless</h1>
+        <h1 style="color: white; position: absolute; right: 5px; top: 5px; font-weight:100;" class="dash-scaler login-title">One</h1>
+        <!-- Login -->
+        <br /><br /><br />
+        <div class="lc-block toggled"  id="l-login" style="-webkit-animation-name: shake; -webkit-animation-duration: 1s; animation-name: shake; animation-duration: 1s;">
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Enter your P&G shortname">
+                </div>
+            </div>
+            
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-accessibility"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" placeholder="Enter your P&G password">
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <i class="input-helper"></i>
+                    Log in as guest (keep both fields blank)
+                </label>
+            </div>
+            
+            <a href="dashboard.html" class="btn btn-login btn-danger btn-float"><i class="md md-arrow-forward"></i></a>
+            <a href="exhibit.html" class="btn btn-login btn-info btn-float" style="position:relative; left:250px; top:10px;" data-toggle="tooltip" data-placement="right" data-original-title="View dashboard as guest"><i class="md md-tv"></i></a>
+                        
+            <ul class="login-navigation">
+                <li data-block="#l-register" class="btn btn-success btn-float" style="position: relative; right: 10px; bottom: 15px; box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);" data-toggle="tooltip" data-placement="bottom" data-original-title="Sign up"><i class="md md-person-add"></i></li>
+                <li data-block="#l-forget-password" class="btn btn-warning btn-float" style="position: relative; left: 10px; bottom: 15px; box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);" data-toggle="tooltip" data-placement="bottom" data-original-title="Information"><i class="md md-info-outline" style="font-size: 30px; position: relative; top: 2px;"></i></li>
+            </ul>
+        </div>
+        
+        <!-- Register -->
+        <div class="lc-block" id="l-register">
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-account-circle"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Enter your name">
+                </div>
+            </div>
+
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-person"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Enter your P&G shortname">
+                </div>
+            </div>
+            
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-mail"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Enter your HP email address">
+                </div>
+            </div>
+            
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-accessibility"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" placeholder="Enter your P&G password">
+                </div>
+            </div>
+
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-wallet-membership"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" placeholder="Enter your T# number">
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <i class="input-helper"></i>
+                    Accept the license agreement
+                </label>
+            </div>
+            
+            <a href="#" class="btn btn-login btn-success btn-float"><i class="md md-arrow-forward"></i></a>
+            
+            <ul class="login-navigation">
+                <li data-block="#l-login" class="btn btn-danger btn-float" style="position: relative; right: 15px; bottom: 15px; box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);" data-toggle="tooltip" data-placement="bottom" data-original-title="Log in"><i class="md md-home"></i></li>
+                <li data-block="#l-forget-password" class="btn btn-warning btn-float" style="position: relative; left: 10px; bottom: 15px; box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);" data-toggle="tooltip" data-placement="bottom" data-original-title="Information"><i class="md md-info-outline" style="font-size: 30px; position: relative; top: 2px;"></i></li>
+            </ul>
+        </div>
+        
+        <!-- Forgot Password -->
+        <div class="modal fade" data-modal-color="bluegray" id="modalAbout" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">About Paperless One</h1>
+                    </div>
+                    <div class="modal-body">
+                        <img src="img/PapOne_logo.png" alt="Paperless One logo" style="resize:both;width:200px;" />
+                        <h4 class="c-white">Paperless One was created as a comprehensive dashboard and report generator to integrate seamlessly with all operations of the Paperless Instore Selling team.
+                        Currently, Paperless One acts as a dashboard to display statistics of all kinds of tickets and generate reports of them on-need or scheduled as emails*.</h4>
+                        <br />
+                        <h4 class="c-white">Since the system is in Beta, we request you to let us know any defects found while using the system so we can fix it. Thank you!</h4>
+                        <hr />
+                        <h2 class="c-white">Paperless One v0.1</h2>
+                        by Jayanth M, Pavan Kumar P
+                        <hr />
+                    </div>
+                    <div class="modal-footer">
+                        <span style="float:left;font-size:16px;">&copy; Hewlett Packard Enterprise, 2015</span>
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" data-modal-color="bluegray" id="modalTech" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Technology credits</h1>
+                    </div>
+                    <div class="modal-body">
+                        <img src="img/credits.png" alt="Technologies used" style="resize:both;width:800px;"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="lc-block" id="l-forget-password">
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-info"></i></span>
+                <div class="fg-line">
+                    <a type="button" class="btn btn-block bgm-orange"  href="#modalAbout" data-target-color="bluegray" data-toggle="modal">About Paperless One</a>
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-explore"></i></span>
+                <div class="fg-line">
+                    <a type="button" class="btn btn-block bgm-orange" href="#modalTech" data-target-color="bluegray" data-toggle="modal">Technology credits</a>
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="md md-email"></i></span>
+                <div class="fg-line">
+                    <a type="button" class="btn btn-block bgm-cyan" href="mailto:pavankp@hp.com;jayanthm@hp.com?subject=Feedback about Paperless One&cc=vidya.kedaginamane@hp.com">Contact us for feedback</a>
+                </div>
+            </div>
+                        
+            <ul class="login-navigation">
+                <li data-block="#l-login" class="btn btn-danger btn-float" style="position: relative; right: 10px; bottom: 15px; box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);" data-toggle="tooltip" data-placement="bottom" data-original-title="Log in"><i class="md md-home"></i></li>
+                <li data-block="#l-register" class="btn btn-success btn-float" style="position: relative; left: 10px; bottom: 15px; box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);" data-toggle="tooltip" data-placement="bottom" data-original-title="Sign up"><i class="md md-person-add"></i></li>
+            </ul>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="vendors/waves/waves.min.js"></script>
+        <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
+        <script src="js/functions.js"></script>
+
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">IE SUCKS!</h1>
+                <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+                <ul class="iew-download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="img/browsers/chrome.png" alt="">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="img/browsers/firefox.png" alt="">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="img/browsers/opera.png" alt="">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="img/browsers/safari.png" alt="">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="img/browsers/ie.png" alt="">
+                            <div>IE (New)</div>
+                        </a>
+                    </li>
+                </ul>
+                <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+            </div>   
+        <![endif]-->
+    </body>
+</html>
