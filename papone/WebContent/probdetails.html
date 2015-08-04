@@ -28,8 +28,8 @@
         var app = e.options[e.selectedIndex].value;
         
         switch(app){
-        case '0' : localStorage.setItem('ci', 'PINS%');localStorage.setItem('application', 'Paperless Instore'); break;
-        case '1' : localStorage.setItem('ci', 'PINS-AUDIT%');localStorage.setItem('application', 'Audit');sendAjaxforProb(); break;
+        case '0': localStorage.setItem('application', 'Paperless Instore');localStorage.setItem('ci', 'PINS%'); break;
+        case '1': localStorage.setItem('application', 'Audit');localStorage.setItem('ci', 'PINS-AUDIT%');sendAjaxforProb(); break;
         case '2': localStorage.setItem('application', 'Binder');localStorage.setItem('ci', 'PINS-BINDER%'); sendAjaxforProb();break;
         case '3': localStorage.setItem('application', 'Dashboard');localStorage.setItem('ci', 'PINS-DASHBOARD%');sendAjaxforProb();break;
         case '4': localStorage.setItem('application', 'Know');localStorage.setItem('ci', 'PINS-KNOW%');sendAjaxforProb();break;
@@ -38,14 +38,17 @@
         case '7': localStorage.setItem('application', 'SEApps');localStorage.setItem('ci', 'PINS-SEA%');sendAjaxforProb(); break;
         case '8': localStorage.setItem('application', 'Visit NG');localStorage.setItem('ci', 'PINS-VISIT%');sendAjaxforProb();break;
         }
-        
-       
     }
-       
     </script>
 </head>
 <body onload="getTemplate();">
-	<div class="loader"></div>
+	<div class="loader">
+		<div id="nprogress">
+			<div class="spinner">
+				<div class="spinner-icon"></div>
+			</div>
+		</div>
+</div>
     <header id="header" onmouseover="$('#problems_link').addClass('active');"></header>
     <section id="main"></section>
 
