@@ -49,7 +49,7 @@ public class SQL {
 	public static String FR_OPEN_DETAIL = "select id,title,ci,status,specialist,request_date,target_date from fulfillment_master where status not like '%Closed%' AND status not like '%Fulfilled%' AND ci like '%PINS%'";
 	public static String CR_PAGE = "SELECT id, title, case when STR_TO_DATE(planned_start, '%Y-%m-%d') = '0000-00-00' then null else STR_TO_DATE(planned_start, '%Y-%m-%d') end as start, case when STR_TO_DATE(planned_finish, '%Y-%m-%d') = '0000-00-00' then null else STR_TO_DATE(planned_finish, '%Y-%m-%d') end as finish, category FROM change_master WHERE status not like '%Draft%' and status not like '%Closed%' and STR_TO_DATE(open_date,'%Y-%m-%d') BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01 00:00:00') AND NOW() AND ci like '%PINS%'";
 	public static String PRS_MONTH_DETAIL = "SELECT id,title,phase,urgency,ci,open_date FROM problem_master WHERE STR_TO_DATE(open_date,'%Y-%m-%d') BETWEEN DATE_FORMAT(NOW(), '%Y-%m-01 00:00:00') AND NOW() AND ci like '%PINS%' and status not like '%Closed%'";
-	
+	public static String PRS_SNAPSHOT_CLOSED = "SELECT count(*), YEAR(i.lastupdate_date), MONTHNAME(i.lastupdate_date) from problem_master i where i.ci like ? and status like '%Closed%' group by YEAR(i.lastupdate_date) desc , MONTH(i.lastupdate_date) DESC";
 	//PROBLEM DETAILS
 	
 	public static String PR_PROACTIVE_COUNT ="select count(*) from problem_master where classification like '%Proactive%' and ci like ? and status not like '%Closed%'";

@@ -15,8 +15,23 @@ public class Problems {
 	private List<Incident> probList;
 	private List<Integer> probCount;
 	private List<String> month;
+	private List<Integer> probCountClosed;
+	private List<String> monthClosed;
 	
 	
+	
+	public List<Integer> getProbCountClosed() {
+		return probCountClosed;
+	}
+	public void setProbCountClosed(List<Integer> probCountClosed) {
+		this.probCountClosed = probCountClosed;
+	}
+	public List<String> getMonthClosed() {
+		return monthClosed;
+	}
+	public void setMonthClosed(List<String> monthClosed) {
+		this.monthClosed = monthClosed;
+	}
 	public int getProactiveCount() {
 		return proactiveCount;
 	}

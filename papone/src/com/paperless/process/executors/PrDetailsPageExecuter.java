@@ -25,6 +25,8 @@ public class PrDetailsPageExecuter {
 		 List<Incident> rcaUnknownList = new ArrayList<Incident>();
 		 List<Integer> probCount = new ArrayList<Integer>();
 		 List<String> month = new ArrayList<String>();
+		 List<Integer> probCountClosed = new ArrayList<Integer>();
+		 List<String> monthClosed = new ArrayList<String>();
 		ConnectionHelper con = new ConnectionHelper();
 		Connection connection;
 		Select select = new Select();
@@ -39,6 +41,19 @@ public class PrDetailsPageExecuter {
 		
 		localBean.setMonth(month);
 		localBean.setProbCount(probCount);
+		
+		rs = select.selectWithParams(SQL.PRS_SNAPSHOT_CLOSED,ci, connection);
+		while(rs.next()){
+			if(rs.getInt(2) > 0){
+			probCountClosed.add(rs.getInt(1));
+			monthClosed.add(rs.getString(3)+"-"+rs.getString(2));
+			}else{
+				//Do nothing.
+			}
+		}
+		
+		localBean.setMonthClosed(monthClosed);
+		localBean.setProbCountClosed(probCountClosed);
 		
 		rs = select.selectWithParams(SQL.PR_PROACTIVE_COUNT, ci, connection);
 		while(rs.next()){
