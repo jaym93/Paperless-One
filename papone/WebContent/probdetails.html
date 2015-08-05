@@ -29,14 +29,14 @@
         
         switch(app){
         case '0': localStorage.setItem('application', 'Paperless Instore');localStorage.setItem('ci', 'PINS%'); break;
-        case '1': localStorage.setItem('application', 'Audit');localStorage.setItem('ci', 'PINS-AUDIT%');sendAjaxforProb(); break;
-        case '2': localStorage.setItem('application', 'Binder');localStorage.setItem('ci', 'PINS-BINDER%'); sendAjaxforProb();break;
-        case '3': localStorage.setItem('application', 'Dashboard');localStorage.setItem('ci', 'PINS-DASHBOARD%');sendAjaxforProb();break;
-        case '4': localStorage.setItem('application', 'Know');localStorage.setItem('ci', 'PINS-KNOW%');sendAjaxforProb();break;
-        case '5': localStorage.setItem('application', 'MyCoach');localStorage.setItem('ci', 'PINS-MYC%');sendAjaxforProb();break;
-        case '6': localStorage.setItem('application', 'Order');localStorage.setItem('ci', 'PINS-ORDER%');sendAjaxforProb();break;
-        case '7': localStorage.setItem('application', 'SEApps');localStorage.setItem('ci', 'PINS-SEA%');sendAjaxforProb(); break;
-        case '8': localStorage.setItem('application', 'Visit NG');localStorage.setItem('ci', 'PINS-VISIT%');sendAjaxforProb();break;
+        case '1': localStorage.setItem('application', 'Audit');localStorage.setItem('ci', 'PINS-AUDIT%'); break;
+        case '2': localStorage.setItem('application', 'Binder');localStorage.setItem('ci', 'PINS-BINDER%'); break;
+        case '3': localStorage.setItem('application', 'Dashboard');localStorage.setItem('ci', 'PINS-DASHBOARD%');break;
+        case '4': localStorage.setItem('application', 'Know');localStorage.setItem('ci', 'PINS-KNOW%');break;
+        case '5': localStorage.setItem('application', 'MyCoach');localStorage.setItem('ci', 'PINS-MYC%');break;
+        case '6': localStorage.setItem('application', 'Order');localStorage.setItem('ci', 'PINS-ORDER%');break;
+        case '7': localStorage.setItem('application', 'SEApps');localStorage.setItem('ci', 'PINS-SEA%'); break;
+        case '8': localStorage.setItem('application', 'Visit NG');localStorage.setItem('ci', 'PINS-VISIT%');break;
         }
     }
     </script>
@@ -94,12 +94,10 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h2>Problem trends<small>Numer of open problem records in a month and number of records closed in the month</small></h2>
+                    <h2>Problem trends<small>Month-wise problem snapshot</small></h2>
                 </div>
                 <div class="card-body">
-                    <script type="text/javascript">
-                        
-                    </script>
+                    
                     <div id="pr-graph-container"></div>
                 </div>
             </div>
@@ -111,66 +109,6 @@
                             <h2>Categorization by source <small>Proactive vs. Reactive problems</small></h2>
                         </div>
                         <div class="card-body m-t-0">
-
-                            <script type="text/javascript">
-                                $(function () {
-                                    $('#pro-reac').highcharts({
-                                        chart: {
-                                            type: 'pie',
-                                            options3d: {
-                                                enabled: true,
-                                                alpha: 45,
-                                                beta: 0
-                                            }
-                                        },
-                                        title: {
-                                            text: ''
-                                        },
-                                        tooltip: {
-                                            pointFormat: '{series.name}: <b>{point.y}</b>'
-                                        },
-                                        plotOptions: {
-                                            pie: {
-                                                point: {
-                                                    events: {
-                                                        mouseOver: function (event) {
-                                                            this.slice(true);
-                                                        },
-                                                        mouseOut: function (event) {
-                                                            this.slice(false);
-                                                        }
-                                                    }
-                                                },
-                                                showInLegend: true,
-                                                allowPointSelect: true,
-                                                depth: 35,
-                                                dataLabels: {
-                                                    enabled: false,
-                                                    format: '{point.name}'
-                                                }
-                                            }
-                                        },
-                                        series: [{
-                                            type: 'pie',
-                                            name: 'Problems',
-                                            data: [
-                                                ['Proactive', 45.0],
-                                                ['Reactive', 26.8]
-                                            ],
-                                            params: ['Proactive', 'Reactive'],
-                                            colors: ['#7CB5EC', '#FF9800'],
-                                            cursor: 'pointer',
-                                            point: {
-                                                events: {
-                                                    click: function () {
-                                                        alert(this.series.userOptions.params[this.x]);
-                                                    }
-                                                }
-                                            }
-                                        }]
-                                    });
-                                });
-                            </script>
                             <div>
                                 <div id="pro-reac"></div>
                             </div>
@@ -184,65 +122,6 @@
                         </div>
                         <div class="card-body m-t-0">
 
-                            <script type="text/javascript">
-                                $(function () {
-                                    $('#rca').highcharts({
-                                        chart: {
-                                            type: 'pie',
-                                            options3d: {
-                                                enabled: true,
-                                                alpha: 45,
-                                                beta: 0
-                                            }
-                                        },
-                                        title: {
-                                            text: ''
-                                        },
-                                        tooltip: {
-                                            pointFormat: '{series.name}: <b>{point.y}</b>'
-                                        },
-                                        plotOptions: {
-                                            pie: {
-                                                point: {
-                                                    events: {
-                                                        mouseOver: function (event) {
-                                                            this.slice(true);
-                                                        },
-                                                        mouseOut: function (event) {
-                                                            this.slice(false);
-                                                        }
-                                                    }
-                                                },
-                                                showInLegend: true,
-                                                allowPointSelect: true,
-                                                depth: 35,
-                                                dataLabels: {
-                                                    enabled: false,
-                                                    format: '{point.name}'
-                                                }
-                                            }
-                                        },
-                                        series: [{
-                                            type: 'pie',
-                                            name: 'Problems',
-                                            data: [
-                                                ['RCA Known', 6.2],
-                                                ['RCA Unknown', 1.7]
-                                            ],
-                                            params: ['RCA known', 'RCA unknown'],
-                                            colors: ['#8BC34A', '#FF5722'],
-                                            cursor: 'pointer',
-                                            point: {
-                                                events: {
-                                                    click: function () {
-                                                        alert(this.series.userOptions.params[this.x]);
-                                                    }
-                                                }
-                                            }
-                                        }]
-                                    });
-                                });
-                            </script>
                             <div>
                                 <div id="rca"></div>
                             </div>
@@ -259,68 +138,6 @@
                         </div>
                         <div class="card-body m-t-0">
 
-                            <script type="text/javascript">
-                                $(function () {
-                                    $('#pr-priority').highcharts({
-                                        chart: {
-                                            type: 'pie',
-                                            options3d: {
-                                                enabled: true,
-                                                alpha: 45
-                                            }
-                                        },
-                                        title: {
-                                            text: ''
-                                        },
-                                        tooltip: {
-                                            pointFormat: '{series.name}: <b>{point.y}</b>'
-                                        },
-                                        plotOptions: {
-                                            pie: {
-                                                point: {
-                                                    events: {
-                                                        mouseOver: function (event) {
-                                                            this.slice(true);
-                                                        },
-                                                        mouseOut: function (event) {
-                                                            this.slice(false);
-                                                        }
-                                                    }
-                                                },
-                                                showInLegend: true,
-                                                allowPointSelect: true,
-                                                depth: 35,
-                                                dataLabels: {
-                                                    enabled: false,
-                                                    format: '{point.name}'
-                                                },
-                                                innerSize: 100,
-                                                depth: 45,
-                                            },
-
-                                        },
-                                        series: [{
-                                            name: 'Priority',
-                                            data: [
-                                                ['Critical', 8],
-                                                ['High', 3],
-                                                ['Average', 1],
-                                                ['Low', 6]
-                                            ],
-                                            params: ['Critical priority', 'High priority', 'Average priority', 'Low priority'],
-                                            colors: ['#F44336', '#3F51B5', '#FF9800', '#4CAF50'],
-                                            cursor: 'pointer',
-                                            point: {
-                                                events: {
-                                                    click: function () {
-                                                        alert(this.series.userOptions.params[this.x]);
-                                                    }
-                                                }
-                                            }
-                                        }]
-                                    });
-                                });
-                            </script>
                             <div>
                                 <div id="pr-priority"></div>
                             </div>
@@ -335,76 +152,7 @@
                         <div class="card-body m-t-0">
 
                             <script type="text/javascript">
-                                $(function () {
-                                    $('#pr-phase').highcharts({
-                                        chart: {
-                                            type: 'pie',
-                                            options3d: {
-                                                enabled: true,
-                                                alpha: 45
-                                            }
-                                        },
-                                        title: {
-                                            text: ''
-                                        },
-                                        tooltip: {
-                                            pointFormat: '{series.name}: <b>{point.y}</b>'
-                                        },
-                                        plotOptions: {
-                                            pie: {
-                                                point: {
-                                                    events: {
-                                                        mouseOver: function (event) {
-                                                            this.slice(true);
-                                                        },
-                                                        mouseOut: function (event) {
-                                                            this.slice(false);
-                                                        }
-                                                    }
-                                                },
-                                                showInLegend: true,
-                                                allowPointSelect: true,
-                                                depth: 35,
-                                                dataLabels: {
-                                                    enabled: false,
-                                                    format: '{point.name}'
-                                                },
-                                                innerSize: 100,
-                                                depth: 45,
-                                            },
-
-                                        },
-                                        series: [{
-                                            name: 'Status',
-                                            data: [
-                                                ['Open', 5],
-                                                ['Accepted', 8],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Waiting', 3],
-                                                ['Closed', 10]
-                                            ],
-                                            colors: ['#9C27B0', '#FFC107', '#00BCD4', '#4CAF50', '#607D8B', '#FF5722', '#CDDC39', '#E91E63', '#009688', '#8BC34A', '#795548', '#F44336', '#03A9F4', '#FFEB3B'],
-                                            params: ['Open', 'Accepted', 'Waiting', 'Closed'],
-                                            cursor: 'pointer',
-                                            point: {
-                                                events: {
-                                                    click: function () {
-                                                        alert(this.series.userOptions.params[this.x]);
-                                                    }
-                                                }
-                                            }
-                                        }]
-                                    });
-                                });
+                             
                             </script>
                             <div>
                                 <div id="pr-phase"></div>
@@ -419,75 +167,80 @@
                     <h2>Ageing problems<small>Classification based on how long a problem has been open without a fix</small></h2>
                 </div>
                 <div class="card-body">
-                    <script type="text/javascript">
-                        $(function () {
-                            // Create the chart
-                            $('#pr-ageing').highcharts({
-                                chart: {
-                                    type: 'column'
-                                },
-                                title: {
-                                    text: ''
-                                },
-                                xAxis: {
-                                    type: 'category'
-                                },
-                                yAxis: {
-                                    title: {
-                                        text: 'No. of problem records'
-                                    }
-
-                                },
-                                legend: {
-                                    enabled: false
-                                },
-                                plotOptions: {
-                                    series: {
-                                        borderWidth: 0,
-                                        dataLabels: {
-                                            enabled: true,
-                                            format: '{point.y}'
-                                        }
-                                    }
-                                },
-
-                                tooltip: {
-                                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                                    pointFormat: '{point.name}: <b>{point.y}</b> PRs<br/>'
-                                },
-
-                                series: [{
-                                    name: "Open for",
-                                    colorByPoint: true,
-                                    data: [{
-                                        name: "0-30 days",
-                                        y: 50,
-                                    }, {
-                                        name: "30-90 days",
-                                        y: 12,
-                                    }, {
-                                        name: "90-180 days",
-                                        y: 5,
-                                    }, {
-                                        name: "Over 180 days",
-                                        y: 1,
-                                    }],
-                                    colors: ['#4CAF50', '#FF9800', '#F44336', '#3F51B5'],
-                                    params: ['thirty', 'ninety', 'oneeighty', 'infinity'],
-                                    point: {
-                                        events: {
-                                            click: function () {
-                                                alert(this.series.userOptions.params[this.x]);
-                                            }
-                                        }
-                                    }
-                                }],
-                            });
-                        });
-                    </script>
+                   
                     <div id="pr-ageing"></div>
                 </div>
             </div>
+            <div class="modal fade" data-modal-color="bluegray" id="pr-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title"><font color="white">Details</font></h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+
+
+                   <table class="table table-inner table-vmiddle table-bordered table-hover">
+                   <thead style="background:#aaa" class="table-responsive">
+                                <tr>
+                                    <th class="f-500 c-brown">IM number</th>
+                                    <th class="f-500 c-brown">Title</th>
+                                    <th class="f-500 c-brown">AppName</th>
+                                    <th class="f-500 c-brown">Open Date</th>
+                                    <th class="f-500 c-brown">Status</th>
+                                    <th class="f-500 c-brown">Phase</th>
+                                    <th class="f-500 c-brown">SM Group</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pr-modal-detail" class="table-responsive find-tickets">
+
+                            </tbody>
+                   </table>
+                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span style="float:left;font-size:16px;">&copy; Hewlett Packard Enterprise, 2015</span>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" data-modal-color="bluegray" id="pr-data-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title"><font color="white">Details</font></h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card">
+                   
+
+                   <table class="table table-inner table-vmiddle table-bordered table-hover ">
+                   <thead style="background:#aaa" class="table-responsive">
+                                <tr>
+                                    <th class="f-500 c-brown">PR number</th>
+                                    <th class="f-500 c-brown">Title</th>
+                                    <th class="f-500 c-brown">Application Name</th>
+                                    <th class="f-500 c-brown">Specialist</th>
+                                    <th class="f-500 c-brown">Status</th>
+                                    <th class="f-500 c-brown">Reported Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modal-pr-severity" class="table-responsive">
+                               
+                            </tbody>
+                   </table>
+                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span style="float:left;font-size:16px;">&copy; Hewlett Packard Enterprise, 2015</span>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
     <footer id="footer" class="card-body"></footer>
@@ -540,7 +293,7 @@
     <script src="vendors/waves/waves.min.js"></script>
    
     <script src="vendors/highcharts/highcharts.js"></script>
-    <script src="vendors/highcharts/touch-tooltip-fix.js"></script>
+    
     <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
     <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
     <script src="vendors/bootstrap-select/bootstrap-select.min.js"></script>
