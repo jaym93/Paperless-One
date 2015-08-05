@@ -43,6 +43,10 @@ body {
   100%   { transform: rotate(360deg); }
 }
 
+.auth-only {
+	display: none;
+}
+
 article,
 aside,
 details,
