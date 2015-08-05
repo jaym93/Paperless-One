@@ -72,7 +72,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="lv-title">To-do list</div>
-                                                <small class="lv-small">0 new items, 7 unchecked</small>
+                                                <small class="lv-small"><span id="notif-todo-new">0</span> new items, <span id="notif-todo-unchk">3</span> unchecked</small>
                                             </div>
                                         </div>
                                     </a>
@@ -83,7 +83,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="lv-title">Incidents due</div>
-                                                <small class="lv-small">5 incidents today, 3 tomorrow</small>
+                                                <small class="lv-small"><span id="notif-inc-today">5</span> incidents today, <span id="notif-inc-tomo">3</span> tomorrow</small>
                                             </div>
                                         </div>
                                     </a>
@@ -94,7 +94,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="lv-title">Newsfeed</div>
-                                                <small class="lv-small">4 new items</small>
+                                                <small class="lv-small"><span id="notif-news-new">4</span> new items</small>
                                             </div>
                                         </div>
                                     </a>
@@ -105,7 +105,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="lv-title">Subscriptions</div>
-                                                <small class="lv-small">5 subscriptions active</small>
+                                                <small class="lv-small"><span id="notif-sub-active">3</span> subscriptions active</small>
                                             </div>
                                         </div>
                                     </a>
@@ -156,7 +156,7 @@
                     }
                 </style>
                 <form onsubmit="showModal(document.getElementById('top-search-box').value)">
-                    <input type="text" id="top-search-box" placeholder="Search for IM/FR/PR/CR " style="color:white;">
+                    <input type="text" id="top-search-box" placeholder="Search for IM/FR/PR/CR " style="color:white;" autocomplete="on" autofocus="autofocus">
                     <button type="submit" hidden></button>
                 </form>
                 <i id="top-search-close">&times;</i>
