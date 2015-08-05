@@ -215,57 +215,6 @@ $(document).ready(function () {
     }
 
     /*
-     * Calendar Widget
-     */
-
-    //var arr = [
-    //           {
-    //               title: 'All Day',
-    //               start: '2015-05-01',
-    //               className: 'bgm-cyan'
-    //           },
-    //           {
-    //               title: 'Long Event',
-    //               start: '2015-05-07',
-    //               end: '2015-05-10',
-    //               className: 'bgm-orange'
-    //           },
-    //           {
-    //               id: 999,
-    //               title: 'Repeat',
-    //               start: '2015-05-09',
-    //               className: 'bgm-lightgreen'
-    //           },
-    //           {
-    //               id: 999,
-    //               title: 'Repeat',
-    //               start: '2015-06-16',
-    //               className: 'bgm-blue'
-    //           },
-    //           {
-    //               title: 'Meet',
-    //               start: '2015-06-12',
-    //               end: '2015-06-12',
-    //               className: 'bgm-teal'
-    //           },
-    //           {
-    //               title: 'Lunch',
-    //               start: '2015-06-12',
-    //               className: 'bgm-gray'
-    //           },
-    //           {
-    //               title: 'Birthday',
-    //               start: '2014-06-13',
-    //               className: 'bgm-pink'
-    //           },
-    //           {
-    //               title: 'Google',
-    //               url: 'http://google.com/',
-    //               start: '2014-06-28',
-    //               className: 'bgm-bluegray'
-    //           }
-    //];
-    /*
      * ##Calender WIDGET IN Exhibit Page##
      * */
     if ($('#calendar-widget')[0]) {
@@ -284,33 +233,6 @@ $(document).ready(function () {
             });
         })();
     }
-
-    /*
-     * Weather Widget
-     */
-    //if ($('#wether-widget')[0]) {
-    //    $.simpleWeather({
-    //        location: 'Austin, TX',
-    //        woeid: '',
-    //        unit: 'c',
-    //        success: function (weather) {
-    //            html = '<div class="weather-status">' + weather.temp + '&deg;' + weather.units.temp + '</div>';
-    //            html += '<ul class="weather-info"><li>' + weather.city + ', ' + weather.region + '</li>';
-    //            html += '<li class="currently">' + weather.currently + '</li></ul>';
-    //            html += '<div class="weather-icon wi-' + weather.code + '"></div>';
-    //            html += '<div class="dash-widget-footer"><div class="weather-list tomorrow">';
-    //            html += '<span class="weather-list-icon wi-' + weather.forecast[2].code + '"></span><span>' + weather.forecast[1].high + '/' + weather.forecast[1].low + '</span><span>' + weather.forecast[1].text + '</span>';
-    //            html += '</div>';
-    //            html += '<div class="weather-list after-tomorrow">';
-    //            html += '<span class="weather-list-icon wi-' + weather.forecast[2].code + '"></span><span>' + weather.forecast[2].high + '/' + weather.forecast[2].low + '</span><span>' + weather.forecast[2].text + '</span>';
-    //            html += '</div></div>';
-    //            $("#weather-widget").html(html);
-    //        },
-    //        error: function (error) {
-    //            $("#weather-widget").html('<p>' + error + '</p>');
-    //        }
-    //    });
-    //}
 
     /*
      * Todo Add new item
@@ -390,8 +312,11 @@ $(document).ready(function () {
     */
     $('body').on('click', '.profile-menu > a', function (e) {
         e.preventDefault();
-        $(this).parent().toggleClass('toggled');
-        $(this).next().slideToggle(200);
+        if(false) {   //CHANGE HERE AFTER LDAP
+        	$(this).parent().toggleClass('toggled');
+            $(this).next().slideToggle(200);
+        }
+        
     });
 
     /*

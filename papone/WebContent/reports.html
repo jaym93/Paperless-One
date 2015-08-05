@@ -22,6 +22,7 @@
     <!--jQuery-->
     <script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/template.js"></script>
+    <script src="js/functions.js"></script>
 </head>
 <body onload="getTemplate(); findLinks();">
 <div class="loader">
@@ -423,10 +424,11 @@
     <script src="vendors/bootstrap-select/bootstrap-select.min.js"></script>
 
     <script src="vendors/highcharts/highcharts.js"></script>
-    <script src="vendors/highcharts/touch-tooltip-fix.js"></script>
-
-    <script src="js/functions.js"></script>
-
+    <script type="text/javascript">
+	if(isMobile.iOS()){
+  		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
+	}
+	</script>
 </body>
 
 </html>

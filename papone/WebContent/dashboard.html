@@ -257,11 +257,10 @@
     <script src="vendors/waves/waves.min.js"></script>
     <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
 
-    <script src="js/charts.js"></script>
-
     <script src="vendors/highcharts/highcharts.js"></script>
-    <script src="vendors/highcharts/touch-tooltip-fix.js"></script>
-
+	if(isMobile.iOS()){
+  		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
+	}
     <script src="js/functions.js"></script>
 
 </body>
