@@ -424,8 +424,8 @@
     <script src="vendors/bootstrap-select/bootstrap-select.min.js"></script>
 
     <script src="vendors/highcharts/highcharts.js"></script>
-    <script type="text/javascript">
-	if(isMobile.iOS()){
+   <script type="text/javascript">
+	if(localStorage.getItem('isMobile') == 'yes') {
   		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
 	}
 	</script>

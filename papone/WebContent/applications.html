@@ -19,7 +19,7 @@
     <!-- CSS -->
     <link href="css/app.min.css" rel="stylesheet">
     <script src="js/jquery-2.1.1.min.js"></script>
-    
+<script src="js/appPage.js"></script>
 
 </head>
 <body onload="getTemplate(); ">
@@ -85,7 +85,7 @@
                             </div>
                             <div class="card-body m-t-0">
 
-                               
+
                                 <div>
                                     <div id="pr-priority"></div>
                                 </div>
@@ -290,7 +290,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="modal fade" data-modal-color="bluegray" id="fr-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -299,7 +299,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                   
+
 
                    <table class="table table-inner table-vmiddle table-bordered table-hover ">
                    <thead style="background:#aaa" class="table-responsive">
@@ -313,7 +313,7 @@
                                 </tr>
                             </thead>
                             <tbody id="tickets-modal-fr" class="table-responsive">
-                               
+
                             </tbody>
                    </table>
                 </div>
@@ -325,7 +325,7 @@
                 </div>
             </div>
         </div>
-        
+
 
     <footer id="footer" class="card-body"></footer>
 
@@ -371,7 +371,7 @@
     <![endif]-->
     <!-- Javascript Libraries -->
     <script src="js/functions.js"></script>
-	<script src="js/appPage.js"></script>
+	
     <script src="js/template.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
@@ -381,13 +381,14 @@
     <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
     <script src="vendors/waves/waves.min.js"></script>
     <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
-
     <script src="vendors/highcharts/highcharts.js"></script>
-	if(isMobile.iOS()){
-  		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
-	}
     <script src="vendors/highcharts/highcharts-more.js"></script>
     <script src="vendors/highcharts/solid-gauge.src.js"></script>
+	<script type="text/javascript">
+	if(localStorage.getItem('isMobile') == 'yes') {
+  		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
+	}
+	</script>
 </body>
 
 </html>

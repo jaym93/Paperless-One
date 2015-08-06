@@ -146,13 +146,15 @@
     <script src="vendors/fullcalendar/lib/moment.min.js"></script>
     <script src="vendors/fullcalendar/fullcalendar.min.js"></script>
     <script src="vendors/highcharts/highcharts.js"></script>
-    if(isMobile.iOS()){
-  		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
-	}
+    
     <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
     <script src="vendors/bootstrap-select/bootstrap-select.min.js"></script>
     <script src="js/functions.js"></script>
-
+<script type="text/javascript">
+	if(localStorage.getItem('isMobile') == 'yes') {
+  		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
+	}
+	</script>
 
     <!-- Data Table -->
 

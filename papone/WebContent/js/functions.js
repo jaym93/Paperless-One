@@ -20,13 +20,50 @@
         }
     });
 })();
-
+setTimeout(function(){ $(".loader").fadeOut("slow"); }, 4000);
 $(window).ajaxStop(function () {
     $(".loader").fadeOut("slow");
 });
-setTimeout(function(){ $(".loader").fadeOut("slow"); }, 3000);
+
 
 $(document).ready(function () {
+	
+	 if (typeof (Storage) == "undefined") {
+		 
+	        swal({
+	            title: "Browser error detected!",
+	            text: "Your browser does not support webstorage. Please use a modern HTML5 browser, like Google Chrome 4.0+, or come out of incognito mode / private browsing if you are in one. \n\n If you continue using this browser, you might face multiple issues, rendering this tool unusable.",
+	            type: "warning",
+	            showCancelButton: true,
+	            confirmButtonColor: "green",
+	            confirmButtonText: "Take me to Chrome Download page",
+	            cancelButtonColor: "red",
+	            cancelButtonText: "Yes, proceed at my own risk",
+	            closeOnConfirm: false,
+	            closeOnCancel: false
+	        },
+	        function (isConfirm) {
+	            if (isConfirm) {
+	                swal({
+	                    title:"Awesome",
+	                    text:"Wait, we will redirect you to Chrome download page",
+	                    type: "success",
+	                    timer: "2000",
+	                    showConfirmButton: false
+	                });
+	                location.assign("https://www.google.co.in/chrome/");
+	            }
+	            else {
+	                swal({
+	                    title:"Proceed", 
+	                    text: "We have warned you!",
+	                    type: "error", 
+	                    timer: "2000",
+	                    showConfirmButton: false
+	                }
+	                )}
+	        });
+	    }
 	
 	   if ((localStorage.getItem('application') == "") || (localStorage.getItem('application') == null)) {
 	        localStorage.setItem('application', 'Paperless Instore');
@@ -54,6 +91,7 @@ $(document).ready(function () {
     };
     if(isMobile.iOS()) {
 		$('.selectpicker').attr("data-live-search","false");
+		localStorage.setItem('isMobile','yes');
 	}
 
     (function () {
