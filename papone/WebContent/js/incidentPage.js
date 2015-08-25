@@ -19,7 +19,7 @@ function findLinks() {
 	  $.ajax({
 
 		        type : 'POST',
-		          url : 'http://localhost:8080/papone/IncidentService',		          
+		          url : 'http://bdc-qpcsa044.na.pg.com:8084/papone/IncidentService',		          
 		          contentType: 'application/x-www-form-urlencoded',
 		          dataType: 'json',
 		           success : function(response) {
@@ -81,7 +81,7 @@ function findLinks() {
                       x: -20 //center
                   },
                   subtitle: {
-                      text: 'Click-and-drag chart area to zoom in, click \'Reset zoom\' button to reset'
+                      text: 'Click-and-drag chart area to zoom in, click \'Reset zoom\' button to reset (not available on touch devices)'
                   },
                   chart: {
                       zoomType: 'x'

@@ -27,7 +27,7 @@ function findLinks() {
 	  $.ajax({
 
 		        type : 'POST',
-		          url : 'http://localhost:8080/papone/Exhibit',		          
+		          url : 'http://bdc-qpcsa044.na.pg.com:8084/papone/Exhibit',		          
 		          contentType: 'application/x-www-form-urlencoded',
 		          dataType: 'json',
 		           success : function(response) {
@@ -40,7 +40,7 @@ function findLinks() {
 	  $.ajax({
 
 	        type : 'POST',
-	          url : 'http://localhost:8080/papone/ExhibitStatus',		          
+	          url : 'http://bdc-qpcsa044.na.pg.com:8084/papone/ExhibitStatus',		          
 	          contentType: 'application/x-www-form-urlencoded',
 	          dataType: 'json',
 	           success : function(response) {

@@ -25,7 +25,7 @@
     <script src="js/problemPage.js"></script>
 
 </head>
-<body onload="getTemplate();">
+ <body class="site" onload="getTemplate();">
 <div class="loader">
 		<div id="nprogress">
 			<div class="spinner">
@@ -36,7 +36,7 @@
     <header id="header" onmouseover="$('#problems_link').addClass('active');"></header>
     <section id="main"></section>
 
-        <section id="content">
+        <section id="content" class="site-content">
             <div class="container">
                 <div class="block-header">
                     <h2>Problem Records</h2>
@@ -44,16 +44,16 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h2>Currently open problem records for this month <small>Drag columns to re-order, click headers to sort in ascending or descending order, green buttons to export, and blue button to show/hide columns. Search any column using the search box. You may also select the number of items to show per page in the dropdown.</small></h2>
+                        <h2>Currently open problem records for this month <small>Drag columns to re-order, click headers to sort in ascending or descending order, green buttons to export (not available on touch devices), and blue button to show/hide columns. Search any column using the search box. You may also select the number of items to show per page in the dropdown.</small></h2>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
                                 <thead>
                                     <tr>
-                                    <th data-column-id="id">PR Id</th>
+                                    <th data-column-id="id">PR number</th>
                                     <th data-column-id="title">Title</th>
-                                    <th data-column-id="app_name">AppName</th>
+                                    <th data-column-id="app_name">Application</th>
                                     <th data-column-id="urgency">Priority</th>
                                     <th data-column-id="assignee">Open Date</th>
                                     <th data-column-id="reportedDate">Phase</th>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
         </section>
-    <footer id="footer" class="card-body"></footer>
+    <div id="footer"></div>
 
     <!-- Older IE warning message -->
     <!--[if lt IE 9]>

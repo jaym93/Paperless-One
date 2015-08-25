@@ -23,7 +23,7 @@ $(document)
 							.ajax({
 
 								type : 'POST',
-								url : 'http://localhost:8080/papone/PrDetailService',
+								url : 'http://bdc-qpcsa044.na.pg.com:8084/papone/PrDetailService',
 								contentType : "application/x-www-form-urlencoded; charset=UTF-8;",
 								dataType : "json",
 								data : {
@@ -40,7 +40,7 @@ $(document)
 							.ajax({
 
 								type : 'POST',
-								url : 'http://localhost:8080/papone/PrService',
+								url : 'http://bdc-qpcsa044.na.pg.com:8084/papone/PrService',
 								contentType : "application/x-www-form-urlencoded; charset=UTF-8;",
 								dataType : "json",
 								data : {
@@ -57,7 +57,7 @@ $(document)
 							.ajax({
 
 								type : 'POST',
-								url : 'http://localhost:8080/papone/ApplicationService',
+								url : 'http://bdc-qpcsa044.na.pg.com:8084/papone/ApplicationService',
 								contentType : "application/x-www-form-urlencoded; charset=UTF-8;",
 								dataType : "json",
 								data : {
@@ -72,15 +72,14 @@ $(document)
 							});
 
 					function drawGraphSeverity(result) {
-						$('#pr-priority')
-								.highcharts(
+						var pr_dat=[];
+				         if(result.criticalProblem+result.majorProblem+result.minorProblem != 0) {
+				        	 pr_dat = [["Critical",result.criticalProblem],["Major",result.majorProblem],["Minor",result.minorProblem]];
+				         }
+						$('#pr-priority').highcharts(
 										{
 											chart : {
 												type : 'pie',
-												options3d : {
-													enabled : true,
-													alpha : 45
-												}
 											},
 											exporting : false,
 											title : {
@@ -119,18 +118,7 @@ $(document)
 											},
 											series : [ {
 												name : 'Priority',
-												data : [
-														[
-																'Critical',
-																result.criticalProblem ],
-														[
-																'Major',
-																result.majorProblem ],
-														[
-																'Minor',
-																result.minorProblem ]
-
-												],
+												data : pr_dat,
 												params : [ "critical", "major",
 														"minor" ],
 												colors : [ '#F44336',
@@ -209,10 +197,10 @@ $(document)
 																name : "Over 180 days",
 																y : response.ageingProblemCount[3],
 															} ],
-													colors : [ '#4CAF50',
-															'#FF9800',
-															'#3F51B5',
-															'#F44336' ],
+													colors : [ '#22CC00',
+															'#ffd800',
+															'#0011EE',
+															'#f20c0c' ],
 													params : [ 'age30',
 															'age90', 'age180',
 															'age360' ],
@@ -229,20 +217,21 @@ $(document)
 											});
 						});
 
-						var chartData = $.map(response.graphData, function(obj,
-								i) {
+						var chartData = $.map(response.graphData, function(obj,i) {
 							return [ [ obj.phase, obj.phaseCount ] ];
 						});
 						JSON.stringify(chartData, null, " ");
-
-						var phaseArray = $.map(response.graphData, function(
-								obj, i) {
-							return [ [ obj.phase ] ];
-						});
+						console.log(chartData);
+						var phase_dat=[];
+						if(chartData.length!=0) {
+							phase_dat=chartData;
+						}
+						var phaseArray = $.map(response.graphData, function(obj, i) {
+							return [[obj.phase]];
+						});						
 						JSON.stringify(phaseArray, null, " ");
 						$(function() {
-							$('#pr-phase')
-									.highcharts(
+							$('#pr-phase').highcharts(
 											{
 												chart : {
 													type : 'pie',
@@ -287,7 +276,7 @@ $(document)
 												},
 												series : [ {
 													name : 'Status',
-													data : chartData,
+													data : phase_dat,
 													colors : [ '#9C27B0',
 															'#FFC107',
 															'#00BCD4',
@@ -329,7 +318,7 @@ $(document)
 												// center
 												},
 												subtitle : {
-													text : 'Click-and-drag chart area to zoom in, click \'Reset zoom\' button to reset'
+													text : 'Click-and-drag chart area to zoom in, click \'Reset zoom\' button to reset (not available on touch devices)'
 												},
 												chart : {
 													zoomType : 'x'
@@ -367,9 +356,12 @@ $(document)
 						});
 
 						// Reactive vs Proactive graph
+						var proreac_dat=[];
+						if(result.proactiveCount+result.reactiveCount!=0) {
+							proreac_dat=[['Proactive',result.proactiveCount ],['Reactive',result.reactiveCount]];
+						}
 						$(function() {
-							$('#pro-reac')
-									.highcharts(
+							$('#pro-reac').highcharts(
 											{
 												chart : {
 													type : 'pie',
@@ -413,13 +405,7 @@ $(document)
 												series : [ {
 													type : 'pie',
 													name : 'Problems',
-													data : [
-															[
-																	'Proactive',
-																	result.proactiveCount ],
-															[
-																	'Reactive',
-																	result.reactiveCount ] ],
+													data : proreac_dat,
 													params : [ 'proactive',
 															'reactive' ],
 													colors : [ '#7CB5EC',
@@ -439,6 +425,10 @@ $(document)
 						});
 
 						$(function() {
+							var rca_dat=[];
+							if(result.rcaKnown+result.rcaUnknown!=0) {
+								rca_dat=[['RCA Known',result.rcaKnown],['RCA Unknown',result.rcaUnknown]];
+							}
 							$('#rca')
 									.highcharts(
 											{
@@ -484,13 +474,7 @@ $(document)
 												series : [ {
 													type : 'pie',
 													name : 'Problems',
-													data : [
-															[
-																	'RCA Known',
-																	result.rcaKnown ],
-															[
-																	'RCA Unknown',
-																	result.rcaUnknown ] ],
+													data : rca_dat,
 													params : [ 'RCA Known',
 															'RCA Unknown' ],
 													colors : [ '#8BC34A',

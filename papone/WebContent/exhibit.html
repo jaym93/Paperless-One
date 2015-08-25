@@ -69,7 +69,7 @@
 
 
 
-        <section id="content">
+        <section id="content" class="site-content">
             <div class="container" style="width:100%">
 
                 <div class="stats">
@@ -142,7 +142,7 @@
                             <div class="bgm-cyan">
                                 <table style="width:100%">
                                     <tr>
-                                        <td class="num" rowspan="2" id ="row_incidents_today" style=""></td>
+                                        <td class="num" rowspan="2" id ="row_incidents_today" style="">--</td>
                                         <td class="desc" style="">Incidents<br />open today</td>
                                     </tr>
                                 </table>
@@ -153,7 +153,7 @@
                             <div class="bgm-pink">
                                 <table style="width:100%">
                                     <tr>
-                                        <td class="num" rowspan="2" id ="row_fulfillments_today" style=""></td>
+                                        <td class="num" rowspan="2" id ="row_fulfillments_today" style="">--</td>
                                         <td class="desc" style="">Fulfilments<br />open today</td>
                                     </tr>
                                 </table>
@@ -164,7 +164,7 @@
                             <div class="bgm-brown">
                                 <table style="width:100%">
                                     <tr>
-                                        <td class="num" rowspan="2" id ="row_incidents_month" style=""></td>
+                                        <td class="num" rowspan="2" id ="row_incidents_month" style="">--</td>
                                         <td class="desc" style="">Incidents<br />this month</td>
                                     </tr>
                                 </table>
@@ -175,7 +175,7 @@
                             <div class="bgm-deeppurple">
                                 <table style="width:100%">
                                     <tr>
-                                        <td class="num" rowspan="2" id ="row_fulfillments_month" style=""></td>
+                                        <td class="num" rowspan="2" id ="row_fulfillments_month" style="">--</td>
                                         <td class="desc" style="">Fulfilments<br />this month</td>
                                     </tr>
                                 </table>
@@ -186,7 +186,7 @@
                             <div class="bgm-lime">
                                 <table style="width:100%">
                                     <tr>
-                                        <td class="num" rowspan="2" id ="row_problems_month" style=""></td>
+                                        <td class="num" rowspan="2" id ="row_problems_month" style="">--</td>
                                         <td class="desc" style="">Problems<br />this month</td>
                                     </tr>
                                 </table>
@@ -197,7 +197,7 @@
                             <div class="bgm-teal">
                                 <table style="width:100%">
                                     <tr>
-                                        <td class="num" rowspan="2" id ="row_changes_month" style=""></td>
+                                        <td class="num" rowspan="2" id ="row_changes_month" style="">--</td>
                                         <td class="desc" style="">Changes<br />this month</td>
                                     </tr>
                                 </table>
@@ -232,48 +232,51 @@
                                             <td>Order</td>
                                             <td>SEApps</td>
                                             <td>Visit NG</td>
+                                            <td>TIE</td>
                                         </tr>
                                     </thead>
                                     <tbody class="table-responsive" id="im-status">
                                         <tr>
                                             <th>Current IM status</th>
 
-                                            <td><i id="audit" ></i></td>
-                                            <td><i id="binder" ></i></td>
-                                            <td><i id="dashboard" ></i></td>
-                                            <td><i id="know" ></i></td>
-                                            <td><i id="myc" ></i></td>
-                                            <td><i id="order" ></i></td>
-                                            <td><i id="sea"></i></td>
-                                            <td><i id="visit" ></i></td>
+                                            <td><i id="audit" class="md md-radio-button-on"></i></td>
+                                            <td><i id="binder" class="md md-radio-button-on"></i></td>
+                                            <td><i id="dashboard" class="md md-radio-button-on"></i></td>
+                                            <td><i id="know" class="md md-radio-button-on"></i></td>
+                                            <td><i id="myc" class="md md-radio-button-on"></i></td>
+                                            <td><i id="order" class="md md-radio-button-on"></i></td>
+                                            <td><i id="sea" class="md md-radio-button-on"></i></td>
+                                            <td><i id="visit" class="md md-radio-button-on"></i></td>
+                                            <td><i id="tie" class="md md-radio-button-on"></i></td>
                                         </tr>
                                         </tbody>
 
                                            <tbody class ="table-responsive">
                                            <tr>
                                            <th>CWTT</th>
-                                            <td><b id = "audit-cwtt"><i id="percent_audit" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
-                                            <td><b id ="binder-cwtt"><i id="percent_binder" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
-                                            <td><b id = "dashboard-cwtt"><i id="percent_dashboard" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
-                                            <td><b id = "know-cwtt"><i id="percent_know" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
-                                            <td><b id = "myc-cwtt"><i id="percent_myc" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
-                                            <td><b id = "order-cwtt"><i id="percent_order" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
-                                            <td><b id = "sea-cwtt"><i id="percent_sea" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
-                                            <td><b id = "visit-cwtt"><i id="percent_visit" style="font-size:2em;font-weight:500"></i></b>&nbsp;%</td>
+                                            <td><b id = "audit-cwtt"><i id="percent_audit" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
+                                            <td><b id ="binder-cwtt"><i id="percent_binder" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
+                                            <td><b id = "dashboard-cwtt"><i id="percent_dashboard" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
+                                            <td><b id = "know-cwtt"><i id="percent_know" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
+                                            <td><b id = "myc-cwtt"><i id="percent_myc" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
+                                            <td><b id = "order-cwtt"><i id="percent_order" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
+                                            <td><b id = "sea-cwtt"><i id="percent_sea" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
+                                            <td><b id = "visit-cwtt"><i id="percent_visit" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
+                                            <td><b id = "tie-cwtt"><i id="percent_tie" style="font-size:2em;font-weight:500">--</i></b>&nbsp;%</td>
                                             </tr>
                                             </tbody>
                                         <tbody class ="table-responsive">
                                         <tr>
                                             <th>Quality Days</th>
-                                            <td><span id="audit_qd" style="font-size:2em;font-weight:500"></span>%</td>
-                                            <td><span id="binder_qd" style="font-size:2em;font-weight:500"></span>%</td>
-                                            <td><span id="dashboard_qd" style="font-size:2em;font-weight:500"></span>%</td>
-                                            <td><span id="know_qd" style="font-size:2em;font-weight:500"></span>%</td>
-                                            <td><span id="myc_qd" style="font-size:2em;font-weight:500"></span>%</td>
-                                            <td><span id="order_qd" style="font-size:2em;font-weight:500"></span>%</td>
-                                            <td><span id="sea_qd" style="font-size:2em;font-weight:500"></span>%</td>
-                                            <td><span id="visit_qd" style="font-size:2em;font-weight:500"></span>%</td>
-
+                                            <td><span id="audit_qd" style="font-size:2em;font-weight:500">--</span>%</td>
+                                            <td><span id="binder_qd" style="font-size:2em;font-weight:500">--</span>%</td>
+                                            <td><span id="dashboard_qd" style="font-size:2em;font-weight:500">--</span>%</td>
+                                            <td><span id="know_qd" style="font-size:2em;font-weight:500">--</span>%</td>
+                                            <td><span id="myc_qd" style="font-size:2em;font-weight:500">--</span>%</td>
+                                            <td><span id="order_qd" style="font-size:2em;font-weight:500">--</span>%</td>
+                                            <td><span id="sea_qd" style="font-size:2em;font-weight:500">--</span>%</td>
+                                            <td><span id="visit_qd" style="font-size:2em;font-weight:500">--</span>%</td>
+											<td><span id="tie_qd" style="font-size:2em;font-weight:500">--</span>%</td>
                                         </tr>
                                         </tbody>
 
@@ -291,7 +294,7 @@
                                     <h2>Today's top issues <small>Incidents that require attention</small></h2>
                                 </div>
 
-                                <div class="card-body m-t-0">
+                                <div class="card-body m-t-0" style="overflow:auto;">
                                     <table class="table table-inner table-vmiddle table-bordered table-hover find-tickets table-responsive" id ="">
                                         <thead style="background:#aaa">
                                             <tr>
@@ -387,10 +390,11 @@
 
 	<script src="js/functions.js"></script>
     <script src="vendors/highcharts/highcharts.js"></script>
+    <script>
 	if(isMobile.iOS()){
   		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
 	}
-
+	</script>
 
 
 

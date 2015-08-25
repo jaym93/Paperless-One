@@ -14,6 +14,7 @@
     
     <link href="vendors/animate-css/animate.min.css" rel="stylesheet">
     <link href="vendors/sweet-alert/sweetalert2.css" rel="stylesheet" />
+    <link href="vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
     <!-- CSS -->
     <link href="css/app.min.css" rel="stylesheet">
 	
@@ -40,7 +41,7 @@
     }
     </script>
 </head>
-<body onload="getTemplate();">
+ <body class="site" onload="getTemplate();">
 	<div class="loader">
 		<div id="nprogress">
 			<div class="spinner">
@@ -51,7 +52,7 @@
     <header id="header" onmouseover="$('#problems_link').addClass('active');"></header>
     <section id="main"></section>
 
-    <section id="content">
+    <section id="content" class="site-content">
         <div class="container">
             <div  class="block-header">
                 <h2 id="title">PR details <i class="md md-chevron-right"></i><script type="text/javascript">
@@ -170,7 +171,7 @@
                     <div id="pr-ageing"></div>
                 </div>
             </div>
-            <div class="modal fade" data-modal-color="bluegray" id="pr-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
+            <div class="modal fade" data-modal-color="bluegray" id="pr-modal"  tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -179,17 +180,16 @@
                     <div class="modal-body">
                         <div class="card">
 
-
-                   <table class="table table-inner table-vmiddle table-bordered table-hover">
+                   <table class="table table-inner table-vmiddle table-bordered table-hover" data-toggle="bootgrid">
                    <thead style="background:#aaa" class="table-responsive">
                                 <tr>
-                                    <th class="f-500 c-brown">IM number</th>
-                                    <th class="f-500 c-brown">Title</th>
-                                    <th class="f-500 c-brown">AppName</th>
-                                    <th class="f-500 c-brown">Open Date</th>
-                                    <th class="f-500 c-brown">Status</th>
-                                    <th class="f-500 c-brown">Phase</th>
-                                    <th class="f-500 c-brown">SM Group</th>
+                                    <th class="f-500 c-brown" data-column-id="im_num" data-order="desc">IM number</th>
+                                    <th class="f-500 c-brown" data-column-id="title" data-order="desc">Title</th>
+                                    <th class="f-500 c-brown" data-column-id="application" data-order="desc">Application</th>
+                                    <th class="f-500 c-brown" data-column-id="open_date" data-order="desc">Open Date</th>
+                                    <th class="f-500 c-brown" data-column-id="status" data-order="desc">Status</th>
+                                    <th class="f-500 c-brown" data-column-id="phase" data-order="desc">Phase</th>
+                                    <th class="f-500 c-brown" data-column-id="smgroup" data-order="desc">SM Group</th>
                                 </tr>
                             </thead>
                             <tbody id="pr-modal-detail" class="table-responsive find-tickets">
@@ -199,14 +199,14 @@
                 </div>
                     </div>
                     <div class="modal-footer">
-                        <span style="float:left;font-size:16px;">&copy; Hewlett Packard Enterprise, 2015</span>
+                        <span style="float:left;font-size:16px;"></span>
                         <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="modal fade" data-modal-color="bluegray" id="pr-data-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
+        <div class="modal fade" data-modal-color="bluegray" id="pr-data-modal"  tabindex="-1" role="dialog" aria-hidden="true" onload="this.findLinks()">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -216,12 +216,12 @@
                         <div class="card">
                    
 
-                   <table class="table table-inner table-vmiddle table-bordered table-hover ">
+                   <table id="pr-table" class="table table-inner table-vmiddle table-bordered table-hover">
                    <thead style="background:#aaa" class="table-responsive">
                                 <tr>
                                     <th class="f-500 c-brown">PR number</th>
                                     <th class="f-500 c-brown">Title</th>
-                                    <th class="f-500 c-brown">Application Name</th>
+                                    <th class="f-500 c-brown">Application</th>
                                     <th class="f-500 c-brown">Specialist</th>
                                     <th class="f-500 c-brown">Status</th>
                                     <th class="f-500 c-brown">Reported Date</th>
@@ -234,7 +234,7 @@
                 </div>
                     </div>
                     <div class="modal-footer">
-                        <span style="float:left;font-size:16px;">&copy; Hewlett Packard Enterprise, 2015</span>
+                        <span style="float:left;font-size:16px;"></span>
                         <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
         </div>
         </div>
     </section>
-    <footer id="footer" class="card-body"></footer>
+    <div id="footer"></div>
 
     <!-- Older IE warning message -->
     <!--[if lt IE 9]>
@@ -290,18 +290,17 @@
 	
     <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
     <script src="vendors/waves/waves.min.js"></script>
-   
     <script src="vendors/highcharts/highcharts.js"></script>
-	
+	<script src="vendors/highcharts/no-data.js"></script>
     <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
     <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
+    <script src="vendors/bootgrid/jquery.bootgrid.min.js"></script>
     <script src="vendors/bootstrap-select/bootstrap-select.min.js"></script>
     <script type="text/javascript">
 	if(localStorage.getItem('isMobile') == 'yes') {
   		document.write('<script src="vendors/highcharts/touch-tooltip-fix.js"><\/script>');
 	}
 	</script>
-    <!-- Data Table -->
     
 </body>
 </html>

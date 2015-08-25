@@ -24,7 +24,7 @@
     <script src="js/template.js"></script>
     <script src="js/functions.js"></script>
 </head>
-<body onload="getTemplate(); findLinks();">
+ <body class="site" onload="getTemplate(); findLinks();">
 <div class="loader">
 		<div id="nprogress">
 			<div class="spinner">
@@ -35,7 +35,7 @@
     <header id="header"></header>
     <section id="main"></section>
 
-    <section id="content">
+    <section id="content" class="site-content">
         <div class="container">
             <div class="block-header">
                 <h2> Ticket Statistics </h2>
@@ -189,7 +189,7 @@
                                 },
 
                                 xAxis: {
-                                    categories: ['Audit', 'Binder', 'Dashboard', 'Know', 'MyCoach', 'Order', 'SEApps', 'VisitNG']
+                                    categories: ['Audit', 'Binder', 'Dashboard', 'Know', 'MyCoach', 'Order', 'SEApps', 'Visit NG']
                                 },
 
                                 yAxis: {
@@ -304,70 +304,66 @@
                 <div class="card-header">
                     <h2>Generate Reports <small>Choose the parameters:</small></h2>
                 </div>
-                <div class="card-body">
-                    <table align="center" style="width:90%;">
-                        <tr>
-                            <th style="width:30%">
-                                <div class="input-group">
-                                    <span class="input-group-addon" style="text-align:left;font-size:16px;">
-                                        <i class="md md-apps">&nbsp;</i>
-                                        <select class="selectpicker" data-live-search="true">
-                                            <option>All</option>
-                                            <option>Audit</option>
-                                            <option>Binder</option>
-                                            <option>Dashboard</option>
-                                            <option>Know</option>
-                                            <option>MyCoach</option>
-                                            <option>Order</option>
-                                            <option>SEApps</option>
-                                            <option>Visit NG</option>
-                                        </select>
-                                    </span>
-                                </div>
-                                <br /><br />
-                                <div class="input-group">
-                                    <span class="input-group-addon" style="text-align:left;font-size:16px;">
-                                        <i class="md md-pages">&nbsp;</i>
-                                        <select class="selectpicker" data-live-search="true">
-                                            <option>Incidents</option>
-                                            <option>Fulfilment requests</option>
-                                            <option>Problem records</option>
-                                            <option>Change records</option>
-                                        </select>
-                                    </span>
-                                </div>
-                            </th>
-                            <th style="width:10%"></th>
-                            <th>
-                                <div class="input-group">
-                                    <span class="input-group-addon" style="text-align:left;font-size:18px;font-weight:900;padding-bottom:5px;"><i class="md md-aspect-ratio">&nbsp;</i>Range:</span>
-                                </div>
-                                <div class="input-group form-group col-sm-8">
-                                    <br />
-                                    <span class="input-group-addon" style="padding-left:30px;"><i class="md md-event"></i></span>
-                                    <div class="dtp-container dropdown fg-line">
-                                        <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="From">
-                                    </div>
-                                </div>
-
-                                <div class="input-group form-group col-sm-8">
-                                    <span class="input-group-addon" style="padding-left:30px;"><i class="md md-event"></i></span>
-                                    <div class="dtp-container dropdown fg-line">
-                                        <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="To">
-                                    </div>
-                                </div>
-                            </th>
-                            <td>
-                                <button onclick="" class="btn btn-lg bgm-indigo" style="position:relative;text-transform:none"><i class="md md-loop"></i>&nbsp;Generate</button>
-                            </td>
-                        </tr>
-                    </table>
+                <div class="card-body" style="min-height:200px">
+                	<div class="col-lg-5 col-md-6 col-sm-6 col-xsm-12" align="center" style="padding:20px;">
+                	<div class="input-group">
+                       <span class="input-group-addon" style="text-align:center;font-size:16px;">
+                           <i class="md md-apps">&nbsp;</i>
+                           <select class="selectpicker" data-live-search="true">
+                               <option>All</option>
+                               <option>Audit</option>
+                               <option>Binder</option>
+                               <option>Dashboard</option>
+                               <option>Know</option>
+                               <option>MyCoach</option>
+                               <option>Order</option>
+                               <option>SEApps</option>
+                               <option>Visit NG</option>
+                           </select>
+                       </span>
+                   	</div>
+                   	<br /><br />
+                   	<div class="input-group">
+                       <span class="input-group-addon" style="text-align:center;font-size:16px;">
+                           <i class="md md-pages">&nbsp;</i>
+                           <select class="selectpicker" data-live-search="true">
+                               <option>Incidents</option>
+                               <option>Fulfilment requests</option>
+                               <option>Problem records</option>
+                               <option>Change records</option>
+                           </select>
+                       </span>
+                   	</div>
+              	</div>
+                <div class="col-lg-5 col-md-6 col-sm-6 col-xsm-12" align="center" style="padding:20px;">
+                	<div class="input-group">
+                    	<span class="input-group-addon" style="text-align:left;font-size:18px;font-weight:900;padding-bottom:5px;"><i class="md md-aspect-ratio">&nbsp;</i>Range:</span>
+                    </div>
+                    <div class="input-group form-group col-sm-8" align="center" style="text-align:center;width=50%;max-width:300px">
+                        <br />
+                        <span class="input-group-addon"><i class="md md-event"></i></span>
+                        <div class="dtp-container dropdown fg-line">
+                            <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="From" onclick="$this.blur();">
+                        </div>
+                    </div>
+                    <div class="input-group form-group col-sm-8" align="center" style="text-align:center;width=50%;max-width:300px">
+                        <span class="input-group-addon"><i class="md md-event"></i></span>
+                        <div class="dtp-container dropdown fg-line">
+                            <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="To">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-12 col-sm-12" align="center">
+                	<button onclick="" class="btn btn-lg bgm-indigo"><i class="md md-loop"></i>&nbsp;Generate</button>
+                </div>
                     <div id="ov-stat" style="margin: 0 auto;"></div>
+                    <br>
+                	<span>&nbsp;</span>
                 </div>
             </div>
         </div>
     </section>
-    <footer id="footer" class="card-body"></footer>
+    <div id="footer"></div>
 
 
     <!-- Older IE warning message -->

@@ -1,8 +1,23 @@
 
-setTimeout(function(){ $(".loader").fadeOut("slow"); }, 4000);
+setTimeout(function(){ $(".loader").fadeOut("slow"); }, 3000);
 $(window).ajaxStop(function () {
     $(".loader").fadeOut("slow");
 });
+
+(function($) {
+      $(this).bind('touchstart', function preventZoom(e) {
+        var t2 = e.timeStamp
+          , t1 = $(this).data('lastTouch') || t2
+          , dt = t2 - t1
+          , fingers = e.originalEvent.touches.length;
+        $(this).data('lastTouch', t2);
+        if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+
+        e.preventDefault(); // double tap - prevent the zoom
+        // also synthesize click events we just swallowed up
+        $(this).trigger('click').trigger('click');
+      });
+})(jQuery);
 
 
 $(document).ready(function () {
@@ -63,7 +78,7 @@ $(document).ready(function () {
 	                    timer: "2000",
 	                    showConfirmButton: false
 	                }
-	                )}
+	                );}
 	        });
 	    }
 	
@@ -168,7 +183,7 @@ $(document).ready(function () {
                     }
                 });
             }
-        })
+        });
 
         //Submenu
         $('body').on('click', '.sub-menu > a', function (e) {
@@ -202,7 +217,7 @@ $(document).ready(function () {
                     z.remove();
                 });
             }, w += 150);
-        })
+        });
 
         //Popup empty message
         setTimeout(function () {
@@ -226,7 +241,7 @@ $(document).ready(function () {
                 $animArray = $animation.split(',');
                 $animationIn = 'animated ' + $animArray[0];
                 $animationOut = 'animated ' + $animArray[1];
-                $animationDuration = ''
+                $animationDuration = '';
                 if (!$animArray[2]) {
                     $animationDuration = 500; //if duration is not defined, default is set to 500ms
                 }
@@ -234,7 +249,7 @@ $(document).ready(function () {
                     $animationDuration = $animArray[2];
                 }
 
-                $(this).find('.dropdown-menu').removeClass($animationOut)
+                $(this).find('.dropdown-menu').removeClass($animationOut);
                 $(this).find('.dropdown-menu').addClass($animationIn);
             }
         });
@@ -247,8 +262,7 @@ $(document).ready(function () {
 
                 $dropdownMenu.addClass($animationOut);
                 setTimeout(function () {
-                    $this.removeClass('open')
-
+                    $this.removeClass('open');
                 }, $animationDuration);
             }
         });
@@ -352,7 +366,7 @@ $(document).ready(function () {
     */
     $('body').on('click', '.profile-menu > a', function (e) {
         e.preventDefault();
-        if(false) {   //CHANGE HERE AFTER LDAP
+        if(true) {   //CHANGE HERE AFTER LDAP
         	$(this).parent().toggleClass('toggled');
             $(this).next().slideToggle(200);
         }
@@ -367,7 +381,7 @@ $(document).ready(function () {
     if ($('.fg-line')[0]) {
         $('body').on('focus', '.form-control', function () {
             $(this).closest('.fg-line').addClass('fg-toggled');
-        })
+        });
 
         $('body').on('blur', '.form-control', function () {
             var p = $(this).closest('.form-group');
@@ -503,7 +517,7 @@ $(document).ready(function () {
                 focus: true
             });
             $('.hec-save').show();
-        })
+        });
 
         //Save
         $('body').on('click', '.hec-save', function () {
@@ -704,7 +718,7 @@ $(document).ready(function () {
                 $(z).addClass('toggled');
             });
 
-        })
+        });
     }
 
     /*

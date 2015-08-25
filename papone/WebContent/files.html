@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <!--[if IE 9 ]><html class="ie9"><![endif]-->
@@ -24,7 +23,7 @@
     <script src="js/template.js"></script>
 
 </head>
-<body onload="getTemplate();">
+ <body class="site" onload="getTemplate();">
 <div class="loader">
 		<div id="nprogress">
 			<div class="spinner">
@@ -34,7 +33,7 @@
 	</div>
     <header id="header" onmouseover="$('#subscriptions_link').addClass('active');"></header>
     <section id="main"></section>
-    <section id="content">
+    <section id="content" class="site-content">
         <div class="container">
             <div class="block-header">
                 <h2>File browser</h2>
@@ -44,19 +43,15 @@
                     <h2>File Manager <small>View and download the files here, contact administrator for uploading new files</small></h2>
                 </div>
                 <div class="card-body c-overflow">
-                    <!--<iframe src="http://localhost/fb/index.html" style="width:100%;height:600px">
-
-                    </iframe>-->
-
                     <object data="http://bdc-qpcsa044.na.pg.com:8484/filemanager/index.html" width="100%" height="1000px">
-					   <div class="alert alert-danger" role="alert"><b>Error</b> File manager failed to load. Contact administrators. (Email link in <a href="index.html">login page</a>, yellow <i class="md md-info-outline"></i> icon)</div>
+					   <div class="alert alert-danger" role="alert"><b>Error</b> File manager failed to load. <a type="button" class="btn btn-xm bgm-red" style="float:right" href="mailto:pavankp@hpe.com;jayanthm@hpe.com?subject=Error with Paperless One File Manager&cc=kishore-kumar.m-j@hpe.com">Report this bug</a></div>
                     </object>
             </div>
         </div>
             </div>
     </section>
 
-    <footer id="footer" class="card-body"></footer>
+    <div id="footer"></div>
 
     <!-- Older IE warning message -->
     <!--[if lt IE 9]>

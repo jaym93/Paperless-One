@@ -45,7 +45,7 @@ function findLinks() {
 	  $.ajax({
 
 		        type : 'POST',
-		          url : 'http://localhost:8080/papone/ApplicationService',	
+		          url : 'http://bdc-qpcsa044.na.pg.com:8084/papone/ApplicationService',	
 		          contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
 		          dataType: "json",
 		          data: {
@@ -62,23 +62,17 @@ function findLinks() {
 		    );
 	  
 	  $.ajax({
-
 	        type : 'POST',
-	          url : 'http://localhost:8080/papone/SpocDetail',	
+	          url : 'http://bdc-qpcsa044.na.pg.com:8084/papone/SpocDetail',	
 	          contentType: "application/x-www-form-urlencoded; charset=UTF-8;",
 	          dataType: "json",
 	          data: {
 	              ci: ciParam
-	              
 	          },
 	          success : function(response) {
 	        	  setSpocDetails(response);
-	        	  
-	        	  
 	        }
-	    }
-
-	    );
+	    });
 	}
 	
 	  
@@ -94,9 +88,12 @@ function findLinks() {
 	  }
 	 
 	  function setData(result){
-		 
 		 fillTable(result);
 		 findLinks();
+		 var pr_dat=[];
+         if(result.criticalProblem+result.majorProblem+result.minorProblem != 0) {
+        	 pr_dat = [["Critical",result.criticalProblem],["Major",result.majorProblem],["Minor",result.minorProblem]];
+         }
 		  $(function () {
               $('#pr-priority').highcharts({
                   chart: {
@@ -139,12 +136,7 @@ function findLinks() {
                   },
                   series: [{
                       name: 'Priority',
-                      data: [
-                             ['Critical',result.criticalProblem],
-                             ['Major',result.majorProblem],
-                             ['Minor',result.minorProblem]
-                             
-                         ],
+                      data: pr_dat,
                       params: [3, 2, 1],
                       colors: ['#F44336', '#FF9800', '#4CAF50'],
                       cursor: 'pointer',
@@ -191,6 +183,10 @@ function findLinks() {
 		            });
 		        })();
 		    }
+		 
+		 var fr_dat=[];
+		 if(result.frCount!=0) fr_dat=[['Open',[result.frCount]]];
+		 
 		 $(function () {
              $('#fulfillment-chart').highcharts({
                  exporting: false,
@@ -228,10 +224,7 @@ function findLinks() {
                  series: [{
                      type: 'pie',
                      name: 'FRs',
-                     data: [
-                         ['Open',result.frCount]
-                         
-                     ],
+                     data: fr_dat,
                      params: [7],
                      colors: ['#7cb5ec'],
                      cursor: 'pointer',
@@ -244,6 +237,11 @@ function findLinks() {
                      }
                  }]
              });
+             
+             var im_dat=[];
+             if(result.majorIncident+result.minorIncident+result.criticalIncident != 0) {
+            	 im_dat = [["Major",result.majorIncident],["Minor",result.minorIncident],["Critical",result.criticalIncident]];
+             }
              $('#incident-chart').highcharts({
                  exporting: false,
                  chart: {
@@ -280,11 +278,7 @@ function findLinks() {
                  series: [{
                      type: 'pie',
                      name: 'Incidents open',
-                     data: [ 
-                         ["Major",result.majorIncident],
-                         ["Minor",result.minorIncident],
-                         ["Critical",result.criticalIncident],
-                     ],
+                     data: im_dat,
                      params: [4, 5, 6],
                      colors: ['#e4d354', '#90ed7d', '#f7a35c'],
                      cursor: 'pointer',
@@ -338,7 +332,6 @@ function findLinks() {
 	  }
 	  
 	  function modalDetails(arr,result){
-		 
 			  var m = new Array(), j = -1;
 			  for (var key=0, size=result.length; key<size; key++){
 			      m[++j] ='<tr><td class="f-500 c-black">';
@@ -354,12 +347,9 @@ function findLinks() {
 			      m[++j] = '</td><td class="f-500 c-black">';
 			      m[++j] = result[key].targetDate;
 			      m[++j] = '</td></tr>';
-			      
-			      
 			  }
 			  $('#tickets-modal-fr').html(m.join('')); 
 			 $("#fr-modal").modal('show');
-			 
 		  }
 	  
 	  function fillTable(result){

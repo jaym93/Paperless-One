@@ -24,7 +24,7 @@
     <script src="js/template.js"></script>
 
 </head>
-<body onload="getTemplate(); findLinks();">
+ <body class="site" onload="getTemplate(); findLinks();">
 <div class="loader">
 		<div id="nprogress">
 			<div class="spinner">
@@ -35,7 +35,7 @@
     <header id="header" onmouseover="$('#items_link').addClass('active');"></header>
     <section id="main"></section>
 
-    <section id="content">
+    <section id="content" class="site-content">
         <div class="container">
             <div class="block-header">
                 <h2><script type="text/javascript">localStorage.getItem('User_Name');</script> :: My items</h2>
@@ -43,7 +43,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2>Tickets assigned to me <small> Incident and fulfilment requests in your name</small></h2>
+                    <h2>Tickets assigned to me <small> Incident and fulfillment requests in your name</small></h2>
                 </div>
 
                 <div class="table-responsive">
@@ -440,7 +440,7 @@
         </div>
     </section>
 
-    <footer id="footer" class="card-body"></footer>
+    <div id="footer"></div>
 
     <!-- Older IE warning message -->
     <!--[if lt IE 9]>
@@ -493,7 +493,6 @@
 
     <script src="vendors/fullcalendar/lib/moment.min.js"></script>
     <script src="vendors/fullcalendar/fullcalendar.min.js"></script>
-    <script src="vendors/simpleWeather/jquery.simpleWeather.min.js"></script>
     <script src="vendors/auto-size/jquery.autosize.min.js"></script>
     <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
     <script src="vendors/waves/waves.min.js"></script>

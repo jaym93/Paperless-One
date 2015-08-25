@@ -4,10 +4,54 @@ html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
+    scrollbar-base-color:rgba(0,0,0,0.1);
+    
 }
 body {
     margin: 0
 }
+
+.site {
+		  display: flex;
+		  min-height: 100vh;
+		  flex-direction: column;
+		}
+		
+.site-content {
+  flex: 1;
+}
+
+::-webkit-scrollbar {
+      width: 5px;
+      height: 10px;
+      border-radius:2px;
+      padding-right:5px;
+      padding-bottom:5px;
+} /* this targets the default scrollbar (compulsory) */
+
+::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.1);
+} /* the new scrollbar will have a flat appearance with the set background color */
+ 
+::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2); 
+      border-radius:10px;
+} /* this will style the thumb, ignoring the track */
+
+::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.5); 
+      border-radius:10px;
+} /* this will style the thumb, ignoring the track */
+ 
+::-webkit-scrollbar-button {
+      background-color: rgba(0, 0, 0, 0.1);
+      height:0;
+      width:0;
+} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+ 
+::-webkit-scrollbar-corner {
+      background-color: rgba(0, 0, 0, 0.1);
+} /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
 
 .loader {
 	position: fixed;
@@ -41,6 +85,49 @@ body {
   0%   { transform: rotate(0deg); }
   50% { transform: rotate(180deg); }
   100%   { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0%   { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+.auth-only {
+	display: none;
+}
+
+.load-bar {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  height: 6px;
+  background-color: #fdba2c;
+}
+.bar {
+  content: "";
+  display: inline;
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: 50%;
+  text-align: center;
+}
+.bar:nth-child(1) {
+  background-color: #da4733;
+  animation: loading 3s linear infinite;
+}
+.bar:nth-child(2) {
+  background-color: #3b78e7;
+  animation: loading 3s linear 1s infinite;
+}
+.bar:nth-child(3) {
+  background-color: #fdba2c;
+  animation: loading 3s linear 2s infinite;
+}
+@keyframes loading {
+    from {left: 50%; width: 0;z-index:100;}
+    33.3333% {left: 0; width: 100%;z-index: 10;}
+    to {left: 0; width: 100%;}
 }
 
 .auth-only {
@@ -6222,6 +6309,7 @@ button.close {
     border: 0;
     -webkit-appearance: none
 }
+
 .modal-open {
     overflow: hidden
 }
@@ -6305,6 +6393,10 @@ button.close {
     position: relative;
     padding: 15px
 }
+
+.modal-body > .card {
+	overflow: auto;
+}
 .modal-footer {
     padding: 15px;
     text-align: right;
@@ -6380,9 +6472,10 @@ button.close {
     max-width: 200px;
     padding: 3px 8px;
     color: #fff;
+    background-color: rgba(0,0,0,0.85);
     text-align: center;
     text-decoration: none;
-    background-color: #737373;
+    background-color: ;
     border-radius: 2px
 }
 .tooltip-arrow {
@@ -6397,56 +6490,56 @@ button.close {
     left: 50%;
     margin-left: -5px;
     border-width: 5px 5px 0;
-    border-top-color: #737373
+    border-top-color: rgba(0,0,0,0.85);
 }
 .tooltip.top-left .tooltip-arrow {
     bottom: 0;
     right: 5px;
     margin-bottom: -5px;
     border-width: 5px 5px 0;
-    border-top-color: #737373
+    border-top-color: rgba(0,0,0,0.85);
 }
 .tooltip.top-right .tooltip-arrow {
     bottom: 0;
     left: 5px;
     margin-bottom: -5px;
     border-width: 5px 5px 0;
-    border-top-color: #737373
+    border-top-color: rgba(0,0,0,0.85);
 }
 .tooltip.right .tooltip-arrow {
     top: 50%;
     left: 0;
     margin-top: -5px;
     border-width: 5px 5px 5px 0;
-    border-right-color: #737373
+    border-right-color: rgba(0,0,0,0.85);
 }
 .tooltip.left .tooltip-arrow {
     top: 50%;
     right: 0;
     margin-top: -5px;
     border-width: 5px 0 5px 5px;
-    border-left-color: #737373
+    border-left-color: rgba(0,0,0,0.85);
 }
 .tooltip.bottom .tooltip-arrow {
     top: 0;
     left: 50%;
     margin-left: -5px;
     border-width: 0 5px 5px;
-    border-bottom-color: #737373
+    border-bottom-color: rgba(0,0,0,0.85);
 }
 .tooltip.bottom-left .tooltip-arrow {
     top: 0;
     right: 5px;
     margin-top: -5px;
     border-width: 0 5px 5px;
-    border-bottom-color: #737373
+    border-bottom-color: rgba(0,0,0,0.85);
 }
 .tooltip.bottom-right .tooltip-arrow {
     top: 0;
     left: 5px;
     margin-top: -5px;
     border-width: 0 5px 5px;
-    border-bottom-color: #737373
+    border-bottom-color: rgba(0,0,0,0.85);
 }
 .popover {
     position: absolute;
@@ -11338,7 +11431,7 @@ body #content {
     }
 }
 #header {
-    background: #03b388;
+    background: rgba(3, 179, 136, 0.6);
     box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
     height: 65px;
     position: fixed;
@@ -11788,7 +11881,7 @@ only screen and (min-resolution: 2dppx) {
     height: calc(100% - 65px);
     -webkit-transform: translate3d(-250px, 0, 0);
     transform: translate3d(-250px, 0, 0);
-    z-index: 5;
+    z-index: 50;
     width: 250px;
     overflow: hidden;
     opacity: 0;
@@ -12360,7 +12453,7 @@ input:focus {
     transition: all;
     -webkit-transition-duration: 300ms;
     transition-duration: 300ms;
-    z-index: 5;
+    z-index: 50;
     opacity: 0;
     filter: alpha(opacity=0)
 }
@@ -12432,7 +12525,6 @@ only screen and (min-resolution: 2dppx) {
     padding: 0;
     white-space: nowrap;
     margin: 0;
-    overflow: auto;
     box-shadow: inset 0 -2px 0 0 #eee
 }
 .tab-nav>li {
@@ -12851,9 +12943,10 @@ only screen and (min-resolution: 2dppx) {
     bottom: 0;
     width: 100%;
     cursor:pointer;
+    top:55px;
 }
  .tomorrow:hover {
-     box-shadow: rgba(0,0,0,0.3) 0px 50px inset;
+     box-shadow: rgba(0,0,0,0.3) 50px 50px inset;
 }
 .dash-widget-item .dash-widget-title {
     padding: 12px 20px;
@@ -13640,150 +13733,7 @@ only screen and (min-resolution: 2dppx) {
     background-position: center;
     background-size: 30px 30px
 }
-#weather-widget .weather-list>span.weather-list-icon.wi-0 {
-    background-image: url(../img/icons/weather/0.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-1 {
-    background-image: url(../img/icons/weather/1.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-2 {
-    background-image: url(../img/icons/weather/2.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-3 {
-    background-image: url(../img/icons/weather/3.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-4 {
-    background-image: url(../img/icons/weather/2.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-5 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-6 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-7 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-8 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-9 {
-    background-image: url(../img/icons/weather/9.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-10 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-11 {
-    background-image: url(../img/icons/weather/9.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-12 {
-    background-image: url(../img/icons/weather/9.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-13 {
-    background-image: url(../img/icons/weather/9.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-14 {
-    background-image: url(../img/icons/weather/9.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-15 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-16 {
-    background-image: url(../img/icons/weather/9.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-17 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-18 {
-    background-image: url(../img/icons/weather/18.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-19 {
-    background-image: url(../img/icons/weather/19.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-20 {
-    background-image: url(../img/icons/weather/19.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-21 {
-    background-image: url(../img/icons/weather/19.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-22 {
-    background-image: url(../img/icons/weather/19.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-23 {
-    background-image: url(../img/icons/weather/19.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-24 {
-    background-image: url(../img/icons/weather/24.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-25 {
-    background-image: url(../img/icons/weather/24.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-26 {
-    background-image: url(../img/icons/weather/26.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-27 {
-    background-image: url(../img/icons/weather/27.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-28 {
-    background-image: url(../img/icons/weather/28.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-29 {
-    background-image: url(../img/icons/weather/27.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-30 {
-    background-image: url(../img/icons/weather/28.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-31 {
-    background-image: url(../img/icons/weather/31.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-32 {
-    background-image: url(../img/icons/weather/32.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-33 {
-    background-image: url(../img/icons/weather/31.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-34 {
-    background-image: url(../img/icons/weather/32.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-35 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-36 {
-    background-image: url(../img/icons/weather/32.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-37 {
-    background-image: url(../img/icons/weather/2.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-38 {
-    background-image: url(../img/icons/weather/2.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-39 {
-    background-image: url(../img/icons/weather/2.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-40 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-41 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-42 {
-    background-image: url(../img/icons/weather/9.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-43 {
-    background-image: url(../img/icons/weather/5.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-44 {
-    background-image: url(../img/icons/weather/27.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-45 {
-    background-image: url(../img/icons/weather/2.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-46 {
-    background-image: url(../img/icons/weather/18.png)
-}
-#weather-widget .weather-list>span.weather-list-icon.wi-47 {
-    background-image: url(../img/icons/weather/2.png)
-}
+
 #weather-widget .weather-list>span>i {
     line-height: 100%;
     font-size: 20px
@@ -13871,11 +13821,15 @@ only screen and (min-resolution: 2dppx) {
     list-style: none;
     padding:2px;
     background-color:#eee;
+    overflow:auto;
 }
 .profile-view .pv-body .pv-contact>li,
 .profile-view .pv-body .pv-follow>li {
     display: inline-block;
     text-align:left;
+}
+.profile-view .pv-body .pv-contact>li>i {
+	margin-right:10px;
 }
 .profile-view .pv-body .pv-follow {
     margin: 20px -20px;
@@ -13890,7 +13844,6 @@ only screen and (min-resolution: 2dppx) {
 .profile-view .pv-body .pv-contact>li {
     margin: 10px;
     display:block;
-    overflow:hidden;
     padding:0;
 }
 .profile-view .pv-body .pv-contact>li>.md {
@@ -15989,7 +15942,6 @@ a.thumbnail.active {
     padding: 35px 55px;
     width: 500px;
     display: inline-block;
-    margin-top: 20%;
     vertical-align: middle;
     position: relative
 }

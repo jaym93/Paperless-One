@@ -25,7 +25,7 @@
     <script src="js/template.js"></script>
 
 </head>
-<body onload="getTemplate();">
+ <body class="site" onload="getTemplate();">
 <div class="loader">
 		<div id="nprogress">
 			<div class="spinner">
@@ -35,7 +35,7 @@
 </div>
     <header id="header" onmouseover="$('#subscriptions_link').addClass('active');"></header>
     <section id="main"></section>
-    <section id="content">
+    <section id="content" class="site-content">
         <div class="container">
             <div class="block-header">
                 <h2>Subscriptions</h2>
@@ -69,7 +69,8 @@
                                     <th>MyCoach</th>
                                     <th>Order</th>
                                     <th>SEApps</th>
-                                    <th>VisitNG</th>
+                                    <th>Visit NG</th>
+                                    <th>TIE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,6 +84,7 @@
                                     <td><div class="toggle-switch" data-ts-color="green"><input id="sub-order" type="checkbox" hidden="hidden"><label for="sub-order" class="ts-helper"></label></div></td>
                                     <td><div class="toggle-switch" data-ts-color="green"><input id="sub-seapps" type="checkbox" hidden="hidden"><label for="sub-seapps" class="ts-helper"></label></div></td>
                                     <td><div class="toggle-switch" data-ts-color="green"><input id="sub-visit" type="checkbox" hidden="hidden"><label for="sub-visit" class="ts-helper"></label></div></td>
+                                    <td><div class="toggle-switch" data-ts-color="green"><input id="sub-visit" type="checkbox" hidden="hidden"><label for="sub-tie" class="ts-helper"></label></div></td>
                                 </tr>
                             </tbody>
                         </table>

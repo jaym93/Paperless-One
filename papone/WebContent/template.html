@@ -49,22 +49,14 @@
                     <li id="top-search">
                         <a class="tm-search" href="#"></a>
                     </li>
-                    <li class="dropdown" style="display:none">
-                        <a data-toggle="dropdown" class="tm-notification" href="#"><i class="tmn-counts"></i></a>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="tm-notification" href="#"><i class="tmn-counts">*</i></a>
                         <div class="dropdown-menu dropdown-menu-lg pull-right">
                             <div class="listview" id="notifications">
                                 <div class="lv-header">
-                                    Notification
-
-                                    <!-- <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="#" data-clear="notification">
-                                                <i class="md md-done-all"></i>
-                                            </a>
-                                        </li>
-                                    </ul> -->
+                                    Notification 
                                 </div>
-                                <div class="lv-body c-overflow" onload="this.niceScroll();">
+                                <div class="lv-body c-overflow">
                                     <a class="lv-item" href="#">
                                         <div class="media">
                                             <div class="pull-left">
@@ -127,7 +119,7 @@
 
                         </div>
                     </li>
-                    <li class="hidden-md" id="chat-trigger" style="display:none" data-trigger="#chat">
+                    <li class="hidden-md" id="chat-trigger" data-trigger="#chat">
                         <a class="tm-chat" href="#"></a>
                     </li>
                     </ul>
@@ -156,7 +148,7 @@
                     }
                 </style>
                 <form onsubmit="showModal(document.getElementById('top-search-box').value)">
-                    <input type="text" id="top-search-box" placeholder="Search for IM/FR/PR/CR " style="color:white;" autocomplete="on" autofocus="autofocus">
+                    <input type="text" id="top-search-box" placeholder="Search for IM/FR/PR/CR " style="color:white;" autocomplete="on">
                     <button type="submit" hidden></button>
                 </form>
                 <i id="top-search-close">&times;</i>
@@ -206,15 +198,239 @@
                     </div>
                 </div>
             </aside>
+            <aside id="chat">
+                <ul class="tab-nav tn-justified" role="tablist">
+                    <li role="presentation" class="active"><a href="#tab-priority" aria-controls="tab-priority" role="tab" data-toggle="tab">Priority</a></li>
+                    <li role="presentation"><a href="#tab-sla" aria-controls="tab-sla" role="tab" data-toggle="tab">SLA</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="tab-priority">
+                        <div class="listview">
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/audit.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Audit</div>
+                                        <small class="lv-small" id="audit-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="lv-img-sm" src="img/applications/binder.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Binder</div>
+                                        <small class="lv-small" id="binder-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/dashboard.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Dashboard</div>
+                                        <small class="lv-small" id="dashboard-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/know.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Know</div>
+                                        <small class="lv-small" id="know-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="lv-img-sm" src="img/applications/mycoach.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">MyCoach</div>
+                                        <small class="lv-small" id="mycoach-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="lv-img-sm" src="img/applications/order.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Order</div>
+                                        <small class="lv-small" id="order-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/sea.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">SEApps</div>
+                                        <small class="lv-small" id="sea-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/visitng.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Visit NG</div>
+                                        <small class="lv-small" id="visit-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/tie.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">TIE</div>
+                                        <small class="lv-small" id="tie-priority">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="tab-sla">
+                        <div class="listview">
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/audit.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Audit</div>
+                                        <small class="lv-small" id="audit-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="lv-img-sm" src="img/applications/binder.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Binder</div>
+                                        <small class="lv-small" id="binder-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/dashboard.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Dashboard</div>
+                                        <small class="lv-small" id="dashboard-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/know.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Know</div>
+                                        <small class="lv-small" id="know-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="lv-img-sm" src="img/applications/mycoach.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">MyCoach</div>
+                                        <small class="lv-small" id="mycoach-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <img class="lv-img-sm" src="img/applications/order.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Order</div>
+                                        <small class="lv-small" id="order-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/sea.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">SEApps</div>
+                                        <small class="lv-small" id="sea-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/visitng.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">Visit NG</div>
+                                        <small class="lv-small" id="visit-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="lv-item" href="#">
+                                <div class="media">
+                                    <div class="pull-left p-relative">
+                                        <img class="lv-img-sm" src="img/applications/tie.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lv-title">TIE</div>
+                                        <small class="lv-small" id="tie-sla">message</small>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
         </section>
 
-        <footer id="footer" class="card-body">
-            <div>
-                <img src="img/HPE_Light.png" alt="Hewlett Packard Enterprise" style="float:left; resize:both; height:6em"/>
-                <img src="img/PGLogo.png" alt="Proctor & Gamble" style="float: right; resize:both; height:6em" />
-                <br /><br /><br /><br /><br /><br />
-                <!--<h2 style="color:white; font-family:'Calisto MT'">&copy; Hewlett-Packard Development Company, 2015</h2>-->
-            </div>
+        <footer id="footer">
+            	<div class="col-xs-12 col-sm-6" style="background-color:#333">
+            		<img src="img/HPE_Light.png" alt="Hewlett Packard Enterprise" style="float:center; resize:both; height:6em;"/>
+            	</div>
+            	<div class="col-xs-12 col-sm-6" style="background-color:#333">
+            		<img src="img/PGLogo.png" alt="Proctor & Gamble" style="float: center; resize:both; height:6em;"/>
+            	</div>
         </footer>
 
         <!-- Older IE warning message -->

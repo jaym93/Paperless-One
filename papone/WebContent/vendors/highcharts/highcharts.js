@@ -560,7 +560,19 @@
             plotBorderColor: "#C0C0C0",
             resetZoomButton: {
                 theme: {
-                    zIndex: 20
+                	fill: 'white',
+                    stroke: 'silver',
+                    r: 0,
+                    states: {
+                        hover: {
+                            fill: '#41739D',
+                            style: {
+                                'color': 'white',
+                                'font-weight': '100',
+                                'top': '3px'
+                            }
+                        }
+                    }
                 },
                 position: {
                     align: "right",
@@ -711,7 +723,7 @@
         tooltip: {
             enabled: !0,
             animation: ba,
-            backgroundColor: "rgba(249, 249, 249, .85)",
+            backgroundColor: "rgba(0, 0, 0, .85)",
             borderWidth: 1,
             borderRadius: 3,
             dateTimeLabelFormats: {
@@ -730,7 +742,7 @@
             shadow: !0,
             snap: Jb ? 25 : 10,
             style: {
-                color: "#333333",
+                color: "#F0F0F0",
                 cursor: "default",
                 fontSize: "12px",
                 padding: "8px",

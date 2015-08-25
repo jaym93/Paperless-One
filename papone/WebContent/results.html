@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Summary :: Tickets</title>
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Vendor CSS -->
+    <link href="vendors/animate-css/animate.min.css" rel="stylesheet">
+    <link href="vendors/datatable/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="vendors/datatable/TableTools/css/dataTables.tableTools.css" rel="stylesheet" />
+    <link href="vendors/datatable/ColReorder/css/dataTables.colReorder.css" rel="stylesheet" />
+    <link href="vendors/datatable/ColVis/css/dataTables.colVis.css" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link href="css/app.min.css" rel="stylesheet">
+
+    <!--jQuery-->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/template.js"></script>
+    <style type="text/css">
+        .panel-collapse .panel-heading:before {
+            display:none;
+        }
+    </style>
+</head>
+ <body class="site" onload="getTemplate(); findLinks();">
+    <div class="loader"></div>
+    <header id="header"></header>
+    <section id="main"></section>
+
+    <section id="content" class="site-content">
+        <div class="container">
+            <div class="block-header">
+                <h2> Query results </h2>
+
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Report <small>From the parameters you selected from the report generator page</small></h2>
+                </div>
+                <div class="card-body">
+
+                    <div class="panel-group" role="tablist" aria-multiselectable="true" data-parent="#accordion" data-collapse-color="black">
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a class="bgm-red c-white" style="font-size:x-large" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Tickets that missed SLA
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="data-table-sla" class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th data-column-id="id">Incident number</th>
+                                                    <th data-column-id="title">Title</th>
+                                                    <th data-column-id="app_name">Application</th>
+                                                    <th data-column-id="urgency">Priority</th>
+                                                    <th data-column-id="assignee">Assignee</th>
+                                                    <th data-column-id="reportedDate">Open Date</th>
+                                                    <th data-column-id="targetDate">SLA Date</th>
+                                                    <th data-column-id="status">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="incident-body" class="find-tickets"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed bgm-lightgreen c-white" style="font-size:x-large" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Tickets that were reported this month
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="data-table-reported" class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th data-column-id="id">Incident number</th>
+                                                    <th data-column-id="title">Title</th>
+                                                    <th data-column-id="app_name">Application</th>
+                                                    <th data-column-id="urgency">Priority</th>
+                                                    <th data-column-id="assignee">Assignee</th>
+                                                    <th data-column-id="reportedDate">Open Date</th>
+                                                    <th data-column-id="targetDate">SLA Date</th>
+                                                    <th data-column-id="status">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="incident-body" class="find-tickets"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-collapse">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed bgm-lightblue c-white" style="font-size:x-large" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Tickets that were closed this month
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table id="data-table-closed" class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <!--Populate header values from JSON, link: http://stackoverflow.com/questions/12728232/populating-datatable-header-values-from-json and http://alanhollis.com/datatables-net-dynamic-column-headings-ajax-request/-->
+                                                    <th data-column-id="id">Incident number</th>
+                                                    <th data-column-id="title">Title</th>
+                                                    <th data-column-id="app_name">Application</th>
+                                                    <th data-column-id="urgency">Priority</th>
+                                                    <th data-column-id="assignee">Assignee</th>
+                                                    <th data-column-id="reportedDate">Open Date</th>
+                                                    <th data-column-id="targetDate">SLA Date</th>
+                                                    <th data-column-id="status">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="incident-body" class="find-tickets"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+        </div>
+    </section>
+    <div id="footer"></div>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+    <!-- Javascript Libraries -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="vendors/auto-size/jquery.autosize.min.js"></script>
+    <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="vendors/bootstrap-select/bootstrap-select.min.js"></script>
+
+    <script src="vendors/datatable/jquery.dataTables.min.js"></script>
+    <script src="vendors/datatable/TableTools/js/dataTables.tableTools.js"></script>
+    <script src="vendors/datatable/ColReorder/js/dataTables.colReorder.js"></script>
+    <script src="vendors/datatable/ColVis/js/dataTables.colVis.js"></script>
+    <script src="js/functions.js"></script>
+    <script type="text/javascript">
+        $('#data-table-sla').DataTable({
+            "ordering": true,
+            "paging": true,
+            "info": true,
+            "fnDrawCallback": findLinks(),
+            "fnRowCallback": function (nRow, aData) {
+                var $nRow = $(nRow); // cache the row wrapped up in jQuery
+                if (aData[6] == "2 - High") {
+                    $nRow.css({ "background-color": "#ffffcc" })
+                }
+                if (aData[3] == "Critical" || aData[3] == "High") {
+                    $nRow.css({ "background-color": "#ffdddd" })
+                }
+                return nRow
+            },
+            "responsive": true,
+            "autoWidth": true,
+            "orderMulti": true,
+            "pagingType": "full_numbers",
+            "dom": "CRTlfrtip",
+            "tableTools": {
+                "sSwfPath": "vendors/datatable/TableTools/swf/copy_csv_xls_pdf.swf",
+                "sExtends": "collection",
+                "sButtonText": "Save",
+                "aButtons": [{ "sExtends": "copy", "sButtonText": "Copy", "oSelectorOpts": { filter: 'applied' } }, { "sExtends": "csv", "oSelectorOpts": { filter: 'applied' } }, { "sExtends": "pdf", "oSelectorOpts": { filter: 'applied' } }]
+            }
+        });
+        $('#data-table-reported').DataTable({
+            "ordering": true,
+            "paging": true,
+            "info": true,
+            "fnDrawCallback": findLinks(),
+            "fnRowCallback": function (nRow, aData) {
+                var $nRow = $(nRow); // cache the row wrapped up in jQuery
+                if (aData[6] == "2 - High") {
+                    $nRow.css({ "background-color": "#ffffcc" })
+                }
+                if (aData[3] == "Critical" || aData[3] == "High") {
+                    $nRow.css({ "background-color": "#ffdddd" })
+                }
+                return nRow
+            },
+            "responsive": true,
+            "autoWidth": true,
+            "orderMulti": true,
+            "pagingType": "full_numbers",
+            "dom": "CRTlfrtip",
+            "tableTools": {
+                "sSwfPath": "vendors/datatable/TableTools/swf/copy_csv_xls_pdf.swf",
+                "sExtends": "collection",
+                "sButtonText": "Save",
+                "aButtons": [{ "sExtends": "copy", "sButtonText": "Copy", "oSelectorOpts": { filter: 'applied' } }, { "sExtends": "csv", "oSelectorOpts": { filter: 'applied' } }, { "sExtends": "pdf", "oSelectorOpts": { filter: 'applied' } }]
+            }
+        });
+        $('#data-table-closed').DataTable({
+            "ordering": true,
+            "paging": true,
+            "info": true,
+            "fnDrawCallback": findLinks(),
+            "fnRowCallback": function (nRow, aData) {
+                var $nRow = $(nRow); // cache the row wrapped up in jQuery
+                if (aData[6] == "2 - High") {
+                    $nRow.css({ "background-color": "#ffffcc" })
+                }
+                if (aData[3] == "Critical" || aData[3] == "High") {
+                    $nRow.css({ "background-color": "#ffdddd" })
+                }
+                return nRow
+            },
+            "responsive": true,
+            "autoWidth": true,
+            "orderMulti": true,
+            "pagingType": "full_numbers",
+            "dom": "CRTlfrtip",
+            "tableTools": {
+                "sSwfPath": "vendors/datatable/TableTools/swf/copy_csv_xls_pdf.swf",
+                "sExtends": "collection",
+                "sButtonText": "Save",
+                "aButtons": [{ "sExtends": "copy", "sButtonText": "Copy", "oSelectorOpts": { filter: 'applied' } }, { "sExtends": "csv", "oSelectorOpts": { filter: 'applied' } }, { "sExtends": "pdf", "oSelectorOpts": { filter: 'applied' } }]
+            }
+        });
+    </script>
+
+</body>
+
+</html>

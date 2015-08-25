@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard :: Paperless One</title>
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <!-- Vendor CSS -->
+    <link href="vendors/animate-css/animate.min.css" rel="stylesheet">
+    <link href="vendors/sweet-alert/sweetalert2.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="css/app.min.css" rel="stylesheet">
+    <style type="text/css">
+        #header {
+            background-color: rgba(50,50,50,0.9);
+        }
+
+            #header > ul > li > a, .block-header > h2 {
+                color: orange;
+            }
+
+        body {
+            background: black;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td.num {
+            width: 40%;
+            color: white;
+            vertical-align: middle;
+            font-size: 36px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .card-body {
+            overflow: overlay;
+        }
+
+        td.desc {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            vertical-align: middle;
+            padding: 8px;
+            text-wrap: avoid;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        table.table-vmiddle > thead > tr > th {
+            background: #eeb;
+        }
+
+        table.status-table {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+            table.status-table > tbody > tr > td > i {
+                font-size: 50px;
+            }
+
+            table.status-table > thead > tr > td, table.status-table > thead > tr > th {
+                background: #ddf;
+            }
+
+            table.status-table > thead > tr > td, table.status-table > thead > tr > th, table.status-table > tbody > tr > td, table.status-table > tbody > tr > th {
+                font-size: 18px;
+            }
+
+        .table-hover > tbody > tr:hover {
+            background-color: rgba(200,200,200,0.5) !important;
+        }
+
+        .stats > div > div {
+            box-shadow: none;
+        }
+
+            .stats > div > div > div {
+                box-shadow: 0 2px 5px rgba(0, 0, 0, .55);
+            }
+    </style>
+
+    <!--jQuery-->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        localStorage.setItem('ma-layout-status', '0');
+    </script>
+    <script src="js/template.js"></script>
+</head>
+<body>
+
+    <header id="header">
+        <ul class="header-inner" style="text-align:center">
+            <li class="logo hidden-xxs">
+                <a href="dashboard.html"><span style="font-weight:800; font-size:xx-large;">Paperless</span><sup style="font-size:x-large"> Admin</sup></a>
+            </li>
+        </ul>
+    </header>
+
+    <section id="main">
+        <section id="content" class="site-content">
+            <div class="container" style="width:100%">
+                <div class="block-header">
+                    <h2>Dashboard statistics update</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header ch-alt bgm-bluegray">
+                                <h2>Score updates <small>Update the Quality Day (QD) scores to be displayed on the dashbaord</small></h2>
+                                <button class="btn bgm-cyan btn-float waves-effect" data-toggle="tooltip" data-placement="top" data-original-title="Update"><i class="md md-file-upload"></i></button>
+                            </div>
+                            <div class="card-body">
+
+                                <table class="table table-bordered status-table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Application</th>
+                                            <td>Audit</td>
+                                            <td>Binder</td>
+                                            <td>Dashboard</td>
+                                            <td>Know</td>
+                                            <td>MyCoach</td>
+                                            <td>Order</td>
+                                            <td>SEApps</td>
+                                            <td>Visit NG</td>
+                                            <td>TIE</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--<tr>
+                                            <th>Updated SWTT</th>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                            <td><input type="text" class="form-control input-mask" data-mask="00%" placeholder=""></td>
+                                        </tr>-->
+                                        <tr>
+                                            <th>Updated QD (%)</th>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                            <td><div class="fg-line"><input type="number" class="form-control" min="0" max="100"> </div> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-header">
+                    <h2>Post content with user visibility</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-7 col-lg-8">
+                        <div class="card">
+                            <div class="card-header bgm-red m-b-20">
+                                <h2>Newsfeed <small>Create items to add to newsfeed</small></h2>
+                                <button class="btn bgm-orange btn-float waves-effect" data-toggle="tooltip" data-placement="top" data-original-title="Post news"><i class="md md-send"></i></button>
+                            </div>
+                            <div class="card-body card-padding">
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-lg" placeholder="Title">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="fg-line">
+                                        <textarea class="form-control auto-size" placeholder="Enter a brief description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-4 col-md-5">
+                        <div class="card">
+                            <div class="card-header bgm-green">
+                                <!-- Please refer the Colors page in User Interface for more color classes -->
+                                <h2>File manager <small>How do I make files visible in the integrated File Manager?</small></h2>
+                            </div>
+                            <div class="card-body card-padding">
+                                Only people with access to the bdc-qpcsa044.na.pg.com server will have access to upload files. If you do have access, copy the files to <b> K:\xampp\htdocs\filemanager\files </b>, and it will be refreshed in the file manager.
+                                <hr />
+                                Copy-paste the following line in Windows Run prompt (Win+R):
+                                <br /><br />
+                                <div class="bgm-yellow c-brown" style="overflow-wrap:break-word;padding:5px;text-align:center">\\bdc-qpcsa044.na.pg.com\k$\xampp\htdocs\filemanager\files</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="block-header">
+                    <h2>User access approval requests</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header ch-alt bgm-teal">
+                                <h2>User approval <small>View and edit permissions for registered users of Paperless One</small></h2>
+                                <button class="btn bgm-lightgreen btn-float waves-effect" data-toggle="tooltip" data-placement="top" data-original-title="Update changes"><i class="md md-done-all"></i></button>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered status-table table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>T# number</th>
+                                            <th>P&amp;G shortname</th>
+                                            <th>User's name</th>
+                                            <th>HP email address</th>
+                                            <th>Authorized</th>
+                                            <th>Valid</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>CS4798</th>
+                                            <td>m.j.1</td>
+                                            <td>Jayanth M</td>
+                                            <td>jayanthm@hp.com</td>
+                                            <td><div class="toggle-switch" data-ts-color="amber"><input id="user1-auth" type="checkbox" hidden="hidden"><label for="user1-auth" class="ts-helper"></label></div></td>
+                                            <td><div class="toggle-switch" data-ts-color="green"><input id="user1-valid" type="checkbox" hidden="hidden" checked><label for="user1-valid" class="ts-helper"></label></div></td>
+                                        </tr>
+                                        <tr>
+                                            <th>CS4797</th>
+                                            <td>p.pk</td>
+                                            <td>Pavan Kumar P</td>
+                                            <td>pavankp@hp.com</td>
+                                            <td><div class="toggle-switch" data-ts-color="amber"><input id="user2-auth" type="checkbox" hidden="hidden" checked><label for="user2-auth" class="ts-helper"></label></div></td>
+                                            <td><div class="toggle-switch" data-ts-color="green"><input id="user2-valid" type="checkbox" hidden="hidden" checked><label for="user2-valid" class="ts-helper"></label></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block-header">
+                    <h2>Add new items to database</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-5 col-md-6">
+                        <div class="card">
+                            <div class="card-header bgm-brown">
+                                <!-- Please refer the Colors page in User Interface for more color classes -->
+                                <h2>New groups <small>Add new SM groups so the service pulls data into the database </small></h2>
+                                <button class="btn bgm-pink btn-float waves-effect" data-toggle="tooltip" data-placement="top" data-original-title="Add SM group"><i class="md md-playlist-add"></i></button>
+                            </div>
+                            <div class="card-body card-padding">
+                                Enter the SM Group name:
+                                <div class="form-group" style="margin-top:10px;">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-lg" placeholder="SM Group name">
+                                    </div>
+                                </div>
+                                <b class="c-red">SM Groups are NOT verified, please check and then enter the SM group, if you enter an invalid SM group, you will need to manually delete it from the database</b>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-7">
+                        <div class="card">
+                            <div class="card-header bgm-deeporange m-b-20">
+                                <h2>PDL subscriptions <small>Subscribe emails to users and PDLs (users can only subscribe themselves to SM groups)</small></h2>
+                                <button class="btn bgm-amber btn-float waves-effect" data-toggle="tooltip" data-placement="top" data-original-title="Subscribe"><i class="md md-group-add"></i></button>
+                            </div>
+                            <div class="card-body card-padding" style="overflow:visible;">
+                                <table>
+                                    <tr>
+                                        <td width="45%">Enter email address:</td>
+                                        <td width="10%"></td>
+                                        <td width="45%">Select SM groups to subscribe to:</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-group" style="margin-top:10px;">
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control input-lg" placeholder="PDL or personal email address">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                            <div class="input-group">
+                                                <span class="input-group-addon" style="text-align:left;font-size:16px;">
+                                                    <select class="selectpicker" data-live-search="true">
+                                                        <option>G.AAUDITTOUCH</option>
+                                                        <option>G.AIBINDER</option>
+                                                        <option>G.APAPSEALL3</option>
+                                                        <option>G.AIVISIT</option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <footer class="card-body">
+        <div>
+            <img src="img/HPE_Light.png" alt="Hewlett Packard Enterprise" style="float:left; resize:both; height:7em;" />
+            <img src="img/PGLogo.png" alt="Proctor & Gamble" style="float: right; resize:both; height:7em;" />
+            <br /><br /><br /><br /><br /><br />
+            <!--<h2 style="color:white; font-family:'Calisto MT'">&copy; Hewlett-Packard Development Company, 2015</h2>-->
+        </div>
+    </footer>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">IE SUCKS!</h1>
+            <p>You are using an outdated version of Internet Explorer, upgrade to any of the following web browser <br/>in order to access the maximum functionality of this website. </p>
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="img/browsers/chrome.png" alt="">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="img/browsers/firefox.png" alt="">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="img/browsers/opera.png" alt="">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="img/browsers/safari.png" alt="">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="img/browsers/ie.png" alt="">
+                        <div>IE (New)</div>
+                    </a>
+                </li>
+            </ul>
+            <p>Upgrade your browser for a Safer and Faster web experience. <br/>Thank you for your patience...</p>
+        </div>
+    <![endif]-->
+    <!-- Javascript Libraries -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="vendors/bootstrap-select/bootstrap-select.min.js"></script>
+    <script src="vendors/input-mask/input-mask.min.js"></script>
+    <script src="vendors/auto-size/jquery.autosize.min.js"></script>
+    <script src="vendors/nicescroll/jquery.nicescroll.min.js"></script>
+    <script src="vendors/waves/waves.min.js"></script>
+    <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
+    <script src="js/functions.js"></script>
+
+
+
+</body>
+
+</html>
